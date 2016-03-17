@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>qrcode</title>
+	<style>
+		.tabHeader{
+			
+		}
+		
+		.normalTab{
+			display:inline;
+			border:2px solid;
+			border-radius:10px;
+			width:150px;
+			height:30px;
+			line-height:25px;
+			padding-left:10px;
+			padding-right:10px;
+		}
+		
+		.panelContainer{
+			padding-top : 10px;
+		}
+		
+		.selected{
+			background-color:pink;
+		}
+		
+		.panel{
+			display:none;
+			height:50px;
+			width:80%;
+		}
+	
+		.display{
+			display:block;
+		}
+		
+		
+		#qrcodeDefault{
+			padding-left:100px;
+			padding-top:100px;
+		}
+		
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://static.alipayobjects.com/seajs/seajs/2.2.0/sea.js"></script>
+    <script type="text/javascript">
+	seajs.config({
+		base: 'http://static.alipayobjects.com',
+		alias: {
+		'jquery': 'jquery/1.7.2/jquery',
+		'index': 'arale-qrcode/1.1.0/index'
+		}
+	});
+	
+	seajs.use(['index','jquery'], function(qrcode,$){
+		console.log(qrcode);
+		var qrnode = new qrcode({
+			text: ""
+		});
+		$('#qrcodeDefault').append(qrnode);
+	});
+	</script>
+  </head>
+  <body>
+	<div id="qrcodeDefault"></div>
+  </body>
+</html>

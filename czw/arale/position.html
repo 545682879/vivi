@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>location</title>
+	<style>
+	div .inner{
+	height:50px;
+	width:50px;
+	}
+
+	</style>
+		  <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+		$(function(){ 
+			console.log($("#test").height())
+			console.log($("#test").innerHeight())
+			console.log($("#test").outerHeight())
+			console.log($("#test").outerHeight(true))
+			
+		}); 
+		
+		
+	</script>
+  </head>
+  <body>
+
+  <!-- <div style="position:absolute;"><div class="inner" style="display:block; background-color:red;;"></div><div class="inner" style="display:block; position:relative; left:10px; top:10px; background-color:blue;"></div></div>
+  
+  <div style="display:inline;"><div class="inner" style="position:absolute; left:10px;top:10px; background-color:#333333"></div></div>
+ <div style="position:fixed; left:10px; top:10px;display:inline;"><div class="inner" style="position:absolute;left:10px;top:10px;background-color:#555555"></div></div>
+
+  
+ <a style="display:inline; height:50px; background-color:#ccc;margin-left:10px;padding-bottom:10px"><span>hello</span><br><span>hello</span></a>
+ <a style="display:inline; height:50px; background-color:red;margin-left:10px;padding-bottom:10px"><span>world</span><span>world</span></a>
+  </div>  
+  <div style="width: 150px;height:20px;float: left;border: 2px solid red;margin: 5px;padding: 10px;" id="test">jjjjj</div> 
+  
+  <input type="text" oninput="console.log('input')" onpropertychange="console.log('propertychange')"/>
+  
+  <div style="zoom: 1">
+  <div style="display: inline-block; *zoom: 1; *display:inline; height:50px;width:50px; background-color:#333"></div>
+  <div style="display: inline-block; *zoom: 1; *display:inline; height:100px;width:100px;background-color:blue;">
+  </div>
+  </div>
+  -->
+   <div style="width: 300px; height :30px; line-height:30px;">
+        <span>user name：</span><input id="Text1" type="text" style="height:25px; vertical-align:sup ;" />
+       </div>
+  </body>
+</html>

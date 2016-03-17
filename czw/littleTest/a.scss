@@ -1,0 +1,476 @@
+$fontSize: 12px;
+body{
+    font-size:$fontSize;
+}
+
+//default variable
+$lineHeight: 28px;
+$lineHeight: 10px !default;
+
+
+div{
+	line-height: $lineHeight;
+}
+
+//# symbol
+$deriction: right;
+$bColor: red;
+.border-#{$deriction}{
+	border-#{$deriction}: 1px solid $bColor;
+}
+
+//list 
+$aList: 12px 24px 36px;
+$aMargin: 10px 10px, 20px 20px;
+//$aMargin: (10px 10px) (20px 20px);
+.font-size{
+	font-size:nth($aList, 2);
+}
+
+.fn-MT{
+	margin-top:nth($aMargin, 1);
+}
+
+//$map: (key1: value1, key2: value2, key3: value3);
+//map-get($map,$key)
+//map-merge($map1,$map2)，map-keys($map)，map-values($map)
+$headings: (h1: 2em, h2: 1.5em, h3: 1.2em);
+@each $header, $size in $headings {
+  #{$header} {
+    font-size: $size;
+  }
+}
+
+//global variable
+//!global 
+
+//Nesting
+//selector Nesting: can use & as parent selector
+.nesting_selector{
+	max-height: 12px;
+	a{
+		color: #369;
+	}
+
+	&:link{
+		color: #963;
+	}
+}
+
+//attribute nesting
+
+.nesting_attribute{
+	border: {
+		style: dashed;
+		left:{
+			width: 1px;
+			color: red;
+		}
+		right:{
+			width: 2px;
+			color: pink;
+		}
+	}
+}
+
+//@at-root: @at-root (without: media)，@at-root (without: support)
+//all，rule(default)，media，support
+
+//skip parent
+@media print {
+    .parent1{
+      color:#f00;
+      @at-root .child1 {
+        width:200px;
+      }
+    }
+}
+
+//skip media
+@media print {
+  .parent2{
+    color:#f00;
+
+    @at-root (without: media) {
+      .child2 {
+        width:200px;
+      } 
+    }
+  }
+}
+
+//skip all
+@media print {
+  .parent3{
+    color:#f00;
+
+    @at-root (without: all) {
+      .child3 {
+        width:200px;
+      } 
+    }
+  }
+}
+
+//result
+/*
+@media print {
+  .parent1 {
+    color: #f00;
+  }
+  .child1 {
+    width: 200px;
+  }
+}
+
+@media print {
+  .parent2 {
+    color: #f00;
+  }
+}
+.parent2 .child2 {
+  width: 200px;
+}
+
+@media print {
+  .parent3 {
+    color: #f00;
+  }
+}
+.child3 {
+  width: 200px;
+}
+*/
+
+//@at-root and &
+.child{
+    @at-root .parent &{
+        color:#f00;
+    }
+}
+
+//result
+/*
+.parent .child {
+  color: #f00;
+}
+*/
+
+//@at-root and & @keyframes
+.demo {
+    animation: motion 3s infinite;
+
+    @at-root {
+        @keyframes motion {
+          	from {top:0px;}
+			to {top:200px;}
+        }
+    }
+}
+
+/*
+.demo {
+    ...   
+    animation: motion 3s infinite;
+}
+@keyframes motion {
+    ...
+}
+*/
+
+//mixin and include
+@mixin center-block {
+    margin-left:auto;
+    margin-right:auto;
+}
+.demo{
+    @include center-block;
+}
+
+/*
+.demo{
+    margin-left:auto;
+    margin-right:auto;
+}
+*/
+
+//have parameter
+@mixin horizontal-line($border:1px dashed #ccc, $padding:10px){
+    border-bottom:$border;
+    padding-top:$padding;
+    padding-bottom:$padding;  
+}
+
+.imgtext-h li{
+    @include horizontal-line(1px solid #ccc);
+}
+
+//specifiy parameter
+.imgtext-h--product li{
+    @include horizontal-line($padding:15px);
+}
+
+/*
+.imgtext-h li {
+    border-bottom: 1px solid #cccccc;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.imgtext-h--product li {
+    border-bottom: 1px dashed #cccccc;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+*/
+
+@mixin function($height: 10px, $width:20px){
+	width: $width;
+	height: $height;
+}
+
+.div{
+	@include function($width: 30px);
+}
+
+//multi parameter
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow:$shadow;
+  box-shadow:$shadow;
+}
+
+.box{
+  border:1px solid #ccc;
+  @include box-shadow(0 2px 2px rgba(0,0,0,.3),0 3px 3px rgba(0,0,0,.3),0 4px 4px rgba(0,0,0,.3));
+}
+
+/*
+.box{
+  border:1px solid #ccc;
+  -webkit-box-shadow:0 2px 2px rgba(0,0,0,.3),0 3px 3px rgba(0,0,0,.3),0 4px 4px rgba(0,0,0,.3);
+  box-shadow:0 2px 2px rgba(0,0,0,.3),0 3px 3px rgba(0,0,0,.3),0 4px 4px rgba(0,0,0,.3);
+}
+*/
+//@content
+@mixin what($param){
+	@media only screen and (max-width: $param){
+		@content;
+	}
+}
+
+@include what(500px){
+	body{
+		color: red;
+	}
+}
+
+//@extend
+h1{
+  border: 4px solid #ff9aa9;
+}
+.speaker{
+  @extend h1;
+  border-width: 2px;
+}
+
+/*
+h1,.speaker{
+  border: 4px solid #ff9aa9;
+}
+.speaker{
+  border-width: 2px;
+}
+*/
+
+
+p{
+	text-indent: 2em;
+	text-transform:capitalize; //uppercase, lowercase, capitalize
+	white-space: nowrap;
+}
+
+div{
+	@extend p;
+	line-height: 10px;
+}
+
+//% placeholder: will not display if not extend
+%h1{
+	font-size: 16px;
+	font-weight: 700;
+}
+
+%h2{
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.hh{
+	@extend h2;
+	font-style: oblique;
+}
+
+//note: can't use @extend in @media, outer @media, can use.
+
+//calculate
+/*
+$baseFontSize:          14px !default;
+$baseLineHeight:        1.5 !default;
+$baseGap:               $baseFontSize * $baseLineHeight !default;
+$halfBaseGap:           $baseGap / 2  !default;
+$samllFontSize:         $baseFontSize - 2px  !default;
+
+//grid 
+$_columns:                     12 !default;      // Total number of columns
+$_column-width:                60px !default;   // Width of a single column
+$_gutter:                      20px !default;     // Width of the gutter
+$_gridsystem-width:            $_columns * ($_column-width + $_gutter); //grid system width
+*/
+
+//@if, @else if
+$fruit: orange;
+.fruit{
+	@if $fruit ==  orange{
+		color: orange;
+	}@else if $fruit == apple {
+		color: green;
+	}@else if $fruit == peach {
+		color: pink;
+	}@else {
+		color: red;
+	}
+}
+
+//below IE7
+$lte7: true;
+.ib{
+    display:inline-block;
+    @if $lte7 {
+        *display:inline;
+        *zoom:1;
+    }
+}
+
+//@for: $i from 1 through 5, inclue 5
+@for $i from 1 through 5{
+	.fn-MT#{$i * 5} {
+		margin-top: $i * 5px;
+	}
+}
+
+//@for: $i from 1 through 5, not inclue 5
+@for $i from 1 to 5{
+	.fn-MT#{$i * 5} {
+		margin-top: $i * 5px;
+	}
+}
+
+//@each map
+$nations: (China: 1,  American: 2, Korea: 3, Japan: 4);
+@each $name, $rank in $nations {
+	.#{$name}_rank {
+		line-height: $rank * 1em ;
+	}
+}
+
+//each list wiht multiple param
+$listA: (top 1px solid #333) (left 2px dashed #666) (right 3px double #999);
+@each $var, $px, $line, $color in $listA {
+	.border_#{$var} {
+		border-#{$var}: $px $line $color;
+	}
+}
+
+//example from web site.
+$animal-data: (puma, black, default),(sea-slug, blue, pointer),(egret, white, move);
+@each $animal, $color, $cursor in $animal-data {
+  .#{$animal}-icon {
+    background-image: url('/images/#{$animal}.png');
+    border: 2px solid $color;
+    cursor: $cursor;
+  }
+}
+
+$listB: (1px solid #333) (2px dashed #666) (3px double #999);
+@for $i from 1 to 4 {
+	.border_#{$i} {
+		border:  nth($listB, $i);
+		padding: nth(nth($listB, $i), 1);
+	}
+}
+
+//The ternary judgment
+//if($condition, $if_true, $if_false)
+
+//$chrome: true;
+/*
+#chrome{
+	font-size: @if($chrome, 12px, 14px);
+}
+*/
+
+//if($chrome, 1px, 2px);
+$baseFontSize:      10px !default;
+$gray:              #ccc !default;        
+
+// pixels to rems 
+@function pxToRem($px) {
+  @return $px / $baseFontSize * 1rem;
+}
+
+.test{
+  font-size:pxToRem(16px);
+  color:darken($gray,10%);
+}
+
+
+
+//PX TO EM
+$base-font-size: 16 !default;
+
+@mixin emCalc($props,$sizes,$base:$base-font-size){
+    $values: ();
+    $sublists: false;
+
+    @each $s in $sizes {
+        @if type-of($s) == list {
+            $sublists: true;
+            $vv: ();
+            @each $ss in $s {
+                $vv: append($vv,if(type-of($ss) == number, #{$ss / $base}em, $ss));
+            }
+            $values: append($values,join((), $vv));
+        }
+        @else {
+            $values: append($values,if(type-of($s) == number, #{$s / $base}em, $s));
+        }
+    }
+    $value: join((), $values, if($sublists,comma,space));
+    @each $prop in $props {#{$prop}: $value}
+}
+
+//SCSS
+.header {
+    @include emCalc(line-height, 30, 16);
+    @include emCalc(width height, 125);
+    @include emCalc(padding, 0 25, 16);
+    @include emCalc(text-shadow, (#0d6e28 1 1) (#777 0 0 2), 16);
+    @include emCalc(box-shadow, (inset 0 0 0 1 #2a9022) (inset 0 0 3 #459966), 16);
+}
+
+
+//Result
+/*
+.header {
+  line-height: 1.875em;
+  width: 7.8125em;
+  height: 7.8125em;
+  padding: 0em 1.5625em;
+  text-shadow: #0d6e28 0.0625em 0.0625em, #777777 0em 0em 0.125em;
+  box-shadow: inset 0em 0em 0em 0.0625em #2a9022, inset 0em 0em 0.1875em #459966; 
+}
+*/
+
+//remove unit for a value.
+@function strip-units($number){
+    @return $number / ($number * 0 + 1);
+}

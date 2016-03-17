@@ -1,0 +1,63 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>React Tutorial</title>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+	<div id="example"></div>
+  <!--  <script type="text/babel" src="scripts/example.js"></script> -->
+    <script type="text/javascript">
+ 		
+ 		var func1 = function(){
+ 			var def1 = $.Deferred();
+ 			
+ 			function setResult(){
+ 				def1.resolve({a:'a', b:'b', c:'c'});
+ 				//def1.reject({err:'errer123'});
+ 			}
+ 			setTimeout(setResult, 100);
+ 			return def1;
+ 		}
+
+ 		var func2 = function(){
+ 			var def2 = $.Deferred();
+ 			function setResult(){
+ 				//def2.reject({err:'err'});
+ 				def2.resolve({a:'a2', b:'b2', c:'c2'});
+ 			}
+ 			setTimeout(setResult, 200);
+ 			return def2;
+ 		}
+
+ 		var func3 = function(){
+ 			var def3 = $.Deferred();
+ 			function setResult(){
+ 				def3.resolve({a:'a1', b:'b1', c:'c1'});
+ 				//def3.reject({err:'errer'});
+ 			}
+
+ 			setTimeout(setResult, 300);
+ 			return def3;
+ 		}
+
+ 		
+ 		function handleSuc(arg1, arg2, arg3){
+ 			console.log('handleSuc');
+ 			console.log(arg1, arg2, arg3);
+ 		}
+
+ 		function handleFail(arg1, arg3){
+ 			console.log('handleFail');
+ 			console.log(arg1,arg3);
+ 		}
+ 		//$.when(func1(), func2(), func3()).then(handleSuc,handleFail);
+ 		$.when(func1(), func2(), func3()).done(handleSuc).fail(handleFail);
+    </script>
+
+  </body>
+</html>

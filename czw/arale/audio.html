@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>test</title>
+	<style>
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">	  
+
+function PlayAudio()  
+{   
+	var audioElement = document.getElementById('audio');  
+    audioElement.play();  
+}  
+function PauseAudio()  
+{  
+var audioElement = document.getElementById('audio');  
+    audioElement.pause();  
+}  	
+	</script>
+    </head>
+    <body>
+		<audio  controls="controls" id="audio" name="a" src="av/tebiedeai.mp3">
+			<!-- <source src="av/xingzoudll.mp3" type="audio/mp3" />
+			<source src="av/tebiedeai.mp3" type="audio/mp3" /> -->
+			行走的力量
+		</audio>
+		<button onclick="PlayAudio() ">play</button>
+		<button onclick="PauseAudio() ">pause</button>
+    </body>
+</html>

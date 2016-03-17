@@ -1,0 +1,165 @@
+    /**
+     * 校验密码规则
+     */
+	function passwordrule(){
+		return {
+		regex: {illegal: /[^-+=|,0-9a-zA-Z!@#$%^&*?_.~+/\\(){}\[\]<>]/,
+			allNumber: /^\d+$/,
+			allLetter: /^[a-zA-Z]+$/,
+			allCharacter: /^[-+=|,!@#$%^&*?_.~+/\\(){}\[\]<>]+$/,
+			allSame: /^([\s\S])\1*$/,
+			upperLetter: /[A-Z]/,
+			lowerLetter: /[a-z]/,
+			number: /\d/g,
+			character: /[-+=|,!@#$%^&*?_.~+/\\()|{}\[\]<>]/
+			},
+		score: function(e) {
+            var t = 0;
+            if (e ==null || e == "" || this.isIllegal(e)){
+                return t;
+			}
+            var n = this.size(e);
+            4 >= n ? t += 5 : n > 4 && 8 > n ? t += 10 : n >= 8 && (t += 25);
+            var o = this.hasLowerAndUpperLetter(e), s = this.hasLetter(e);
+            o ? t += 20 : s && (t += 10);
+            var i = this.hasNumber(e);
+            i >= 3 ? t += 20 : i && (t += 10);
+            var r = this.hasCharacter(e);
+            return r >= 3 ? t += 25 : r && (t += 10), o && i && r ? t += 10 : s && i && r ? t += 5 : (s && i || s && r || i && r) && (t += 2), t
+        },level: function(e) {
+            return Math.floor(this.score(e) / 10)
+        },size: function(e) {
+            return e.length
+        },isIllegal: function(e) {
+            return !!(e.match(this.regex.illegal))
+        },isAllNumber: function(e) {
+            return !!e.match(this.regex.allNumber)
+        },isAllLetter: function(e) {
+            return !!e.match(this.regex.allLetter)
+        },isAllCharacter: function(e) {
+            return !!e.match(this.regex.allCharacter)
+        },isAllSame: function(e) {
+            return !!e.match(this.regex.allSame)
+        },hasNumber: function(e) {
+            return (e.match(this.regex.number) || []).length
+        },hasLetter: function(e) {
+            return !!e.match(this.regex.lowerLetter) || !!e.match(this.regex.upperLetter)
+        },hasLowerAndUpperLetter: function(e) {
+            return !!e.match(this.regex.lowerLetter) && !!e.match(this.regex.upperLetter)
+        },hasNumberAndLetter: function(e) {
+            return !(!e.match(this.regex.number) || !e.match(this.regex.lowerLetter) && !e.match(this.regexp.upperLetter))
+        },hasCharacter: function(e) {
+			return (e.match(this.regex.character) || []).length
+        }
+	}
+}
+    
+/**
+  * 校验密码，更新密码提示
+  */
+function passwordCheck(el, blur){
+	if(el.val() == null || el.val() == ""){
+		for(k=1;k<=3;k++){
+			$("#pwd-strenth"+k).css("background-color", "#C2C8C8");
+			$("#rule"+k).css("color", "#C2C8C8");
+		}
+		$("#pwd-strenth-degree").css("color", "#C2C8C8").html("");
+		return ;
+	}
+	var n = passwordrule();
+	function check() {
+            var e = el.val(), 
+			t = {
+				length: n.size(e) >= 6 && 20 >= n.size(e),
+				legal: !n.isIllegal(e),
+				multi: !!(n.hasNumber(e) && n.hasLetter(e) || n.hasNumber(e) && n.hasCharacter(e) || n.hasLetter(e) && n.hasCharacter(e))};
+            return t
+        };
+	function validate() {
+			var t = this.check();
+            return t.length && t.legal && t.multi;
+        };
+	function strength() {
+            var e = el.val(), t = n.level(e);
+            return t >= 8 ? 3 : t >= 3 ? 2 : t >= 1 ? 1 :0
+        };
+	var checkResult = check(),
+	strs = strength();
+	var pwdStrenths = {1 : "低", 2 :"中", 3:"高"}
+	var pwdStrenthColors = {1 : "#14C3B6", 2 :"#FFB615", 3:"#FFB615"}
+	//失去焦点后显示密码可用性
+	if(blur){
+		var pwdPosition = el.position();
+		if(checkResult.length && checkResult.legal && checkResult.multi){
+			$("#pwd-error").css({display:"none"});
+			$("#pwd-strenth-degree-hint").html(pwdStrenths[strs]).css("color",pwdStrenthColors[strs]);
+			$("#pwd-ok").css({display:"block", left:(pwdPosition.left+el.outerWidth()+5), paddingTop: '13px'});
+		}else{
+			$("#pwd-ok").css({display:"none"});
+			$("#pwd-error").css({display : "block", left: (pwdPosition.left+el.outerWidth()+5), paddingTop : '13px'});
+			el.addClass("fm-text-error");
+		}
+		return;
+	}
+	
+	//动态显示密码强度。
+	switch (strs){
+		case 3 : 
+			$("#pwd-strenth1").css("background-color", pwdStrenthColors[3]);
+			$("#pwd-strenth2").css("background-color", pwdStrenthColors[3]);
+			$("#pwd-strenth3").css("background-color", pwdStrenthColors[3]);
+			$("#pwd-strenth-degree").css("color", "#14C3B6").html(pwdStrenths[3]);
+			break;
+		case 2 :
+			$("#pwd-strenth1").css("background-color", pwdStrenthColors[2]);
+			$("#pwd-strenth2").css("background-color", pwdStrenthColors[2]);
+			$("#pwd-strenth3").css("background-color", "#C2C8C8");
+			$("#pwd-strenth-degree").css("color", "#FFB615").html(pwdStrenths[2]);
+			break;
+		case 1 :
+			$("#pwd-strenth1").css("background-color", pwdStrenthColors[1]);
+			$("#pwd-strenth2").css("background-color", "#C2C8C8");
+			$("#pwd-strenth3").css("background-color", "#C2C8C8");
+			$("#pwd-strenth-degree").css("color", "#FF420E").html(pwdStrenths[1]);
+			break;
+		default : 
+			$("#pwd-strenth1").css("background-color", "#C2C8C8");
+			$("#pwd-strenth2").css("background-color", "#C2C8C8");
+			$("#pwd-strenth3").css("background-color", "#C2C8C8");
+			$("#pwd-strenth-degree").css("color", "#C2C8C8").html("");
+	}
+
+	var rule = {1 : "length", 2 :"legal", 3:"multi"};
+	
+	for(i=1; i<=3; i++){
+	  if(checkResult[rule[i]]){
+		$("#rule"+i).css("color", "#14C3B6");
+	  }else{
+		$("#rule"+i).css("color", "#C2C8C8");
+	  }
+	}
+	
+}    
+
+
+function attachPwdTip(password){
+	password.on({
+    	focus:function(){
+    		password.removeClass("fm-text-error");
+    		$("#pwd-error").css({display:"none"});
+    		$("#pwd-ok").css({display:"none"});
+    		var p = password.position();
+    		var aLeft = (p.left+password.outerWidth()+5) + "px";
+    		var aTop =  (p.top -(($("#pwd-tip").outerHeight() - password.outerHeight() )/2)) + "px";
+    		$("#pwd-tip").css({display: "block", position:"absolute", left: aLeft, top:aTop})
+    		passwordCheck(password, false);
+    	},
+    	blur:function(){
+    		$("#pwd-tip").css({display :"none"});
+    		passwordCheck(password, true);
+    	},
+    	keyup:function(){
+    		passwordCheck(password, false);
+    	}
+    	});
+}

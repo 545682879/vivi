@@ -1,0 +1,57 @@
+﻿// git status
+
+git add .
+git commit -m 'add'
+git pull [origin daily/1.0.1]
+git push origin daily/1.0.1
+
+
+git stash
+git stash  list
+git stash pop
+
+<span class="fn-CuPo kuma-icon kuma-icon-close JS-trigger-click-remove" aria-hidden="true"></span>
+
+分支发布：
+git tag -a publish/1.0.44 -m 'publish/1.0.44'
+git tag -d pulish/1.0.44
+git push --tag
+
+合并分支：
+git checkout master
+
+git checkout -b iss53
+//git branch iss53
+// git checkout iss53
+
+git merge iss53
+
+git branch -d hotfix //删除分支
+
+
+创建分支：
+git checkout master
+git pull
+git branch new_branch
+git checkout  new_branch
+ |
+ |
+ |
+\/
+git checkout -b new_branch
+
+//创建分支
+git checkout master
+git pull origin master
+git branch daily/1.0.29
+git checkout daily/1.0.29
+push origin daily/1.0.29
+
+
+git branch --set-upstream-to=origin daily/1.0.44
+
+//生成秘钥
+git config --global user.name "wb-chenzhiwen.a"
+git config --global user.email "wb-chenzhiwen.a@alibaba-inc.com"
+$ ssh-keygen -t rsa -C "wb-chenzhiwen.a@alibaba-inc.com"
+

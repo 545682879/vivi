@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>test</title>
+	<style>
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">	  
+
+function Playvideo()  
+{   
+	var videoElement = document.getElementById('video');  
+    videoElement.play();  
+}  
+function Pausevideo()  
+{  
+var videoElement = document.getElementById('video');  
+    videoElement.pause();  
+}  	
+	</script>
+    </head>
+    <body>
+		<video  controls="controls" autoplay id="video" name="a" src="av/vedio.mp4">
+			小孩
+		</video>
+		<button onclick="Playvideo() ">play</button>
+		<button onclick="Pausevideo() ">pause</button>
+    </body>
+</html>

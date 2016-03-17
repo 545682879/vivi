@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>test</title>
+	<style>
+	  .divClass{
+	     height:200px;
+		 width:200px;
+		 background-color:red;
+	  }
+	  
+	  .divFloat{
+	     height:100px;
+		 width:100px;
+		 background-color:gray;
+		 z-index:2;
+		 position:absolute;
+	  }
+	  
+	  div
+	{
+	  resize:both;
+	  overflow:auto;
+    }
+
+	</style>
+		  <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+            var div = $("div.divClass");//获取显示层
+            div.bind('mouseover',function(e){//查找a对象，并给对象创建onmouseover事件--这里可以替换成其他的如：div($('div').bind())，ul下的 li $('ul > li').bind()
+			   leftpos = e.pageX ;
+				toppos = e.pageY;
+				$("div.divFloat").css({ top: toppos ,left: leftpos  });
+
+        }).bind('mousemove',function(e){//查找a对象，并给对象创建onmouseover事件--这里可以替换成其他的如：div($('div').bind())，ul下的 li $('ul > li').bind()
+			   leftpos = e.pageX ;
+				toppos = e.pageY;
+				$("div.divFloat").css({ top: toppos ,left: leftpos  });
+
+        }); 
+     });	
+	  function testConsoleLog(){
+	    console.log("I am console");
+	  }
+
+	  
+	</script>
+  </head>
+  <body>
+   <!-- <a href="" onclick="testConsoleLog()">test</a> -->
+	<div class="divClass"></div>	
+	<div class="divFloat"></div>	
+  </body>
+</html>

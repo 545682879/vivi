@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>place holder</title>
+	<style>
+		*{margin:0;padding:0;font-size:12px;}
+		.class1{
+		    width:300px;
+			height:300px;
+		    
+		}
+		.nomalInput{border:1px solid #CCC;background:#FFF;}
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://static.alipayobjects.com/seajs/seajs/2.2.0/sea.js"></script>
+    <script type="text/javascript">
+	seajs.config({
+		base: 'http://static.alipayobjects.com',
+		alias: {
+		'jquery': 'jquery/1.7.2/jquery',
+		'widget': 'arale-widget/1.2.0/widget'
+		}
+	});
+	
+	seajs.use(['widget', 'jquery'], function(Widget, $) {
+
+    var PlaceHolderInput = Widget.extend({
+		attrs : {
+			shadowTextCss: null
+		},
+	    events: {
+			'input ': 'showPlaceHolder',
+			'propertychange': 'showPlaceHolder',
+			'keydown': 'showPlaceHolder',
+			'paste': 'showPlaceHolder',
+			'blur': 'showPlaceHolder'
+        },
+		
+		isEmpty : function(){
+		    return !$(this.element).val();
+		},
+		showPlaceHolder : function(e){
+			var me = this,
+				$holder = me.get('holder');
+			if(me.inEvent && (e.type === 'blur' || e.type === 'paste' || e.type === 'keydown' || e.type === 'input' || e.originalEvent.propertyName === 'value') ){
+				me.inEvent = false;
+				setTimeout(function(){
+					if(me.isEmpty()){
+						$holder.show();
+					}else{
+						$holder.hide();
+					}
+					me.inEvent = true;
+				}, 0);
+			}
+		},
+		setup : function() {
+			var me = this,
+				documentMode = document.documentMode;
+			console.log(documentMode);
+			//判断IE9-的时候就
+			if(documentMode && documentMode === 8 || documentMode === 9){
+				me.initNode();
+			}
+		},
+		initNode: function(){
+			//原始的输入表单
+			var me = this,
+				$input = $(me.element),
+				inputOuterHeight = $input.outerHeight(),
+				placeHolderText = $input.attr('placeholder'),//获取表单的文本
+				$parent = $('<div>'),//初始化父级div
+				$holder = $('<div>');//初始化文本div
+			//事件的开关
+			me.inEvent = true
+			//干掉原始属性
+			$input.removeAttr('placeholder');
+			//设置input的样式
+			$input.css('background-color','transparent');
+			//设置父级的样式
+			$parent.css({
+				'display': 'inline-block',
+				'position': 'relative'
+			});
+			//设置文本div内容和样式
+			$holder.html(placeHolderText);
+			//初始化文本的基本信息，宽度，高度，位置，行高
+			$holder.css( $.extend({
+				'width': $input.outerWidth(),
+				'height': inputOuterHeight,
+				'line-height': inputOuterHeight + 'px',
+				'position': 'absolute',
+				'top': '0',
+				'left': '0',
+				'color': '#999',
+				'z-index': -1
+			}, me.get('shadowTextCss')) );
+			//存入对象
+			me.set('holder', $holder);
+			//放入文档中国
+			$input.after($parent);
+			$input.appendTo($parent);
+			$input.before($holder);
+		}
+        
+    });
+
+    var a = new PlaceHolderInput({ element: '#input1' });
+});
+	</script>
+  </head>
+  <body>
+  <div>
+  <div class="class1"  style="margin:0 auto;">
+  
+  <input id="input1" placeholder="input 1" class="nomalInput" style="height:20px; line-height:20px; padding:5px 0 5px 0;"/>
+
+  </div>
+  <input id="input2" placeholder="input 1" style="height:30px; "/>
+  </div>
+  </body>
+</html>

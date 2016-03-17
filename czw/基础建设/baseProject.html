@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>base Project</title>
+
+	<style>
+
+	*{
+		padding:0;
+		margin:0;
+	}
+	body * {
+		word-wrap: break-word;
+	}
+	*, *:before, *:after {
+		box-sizing: border-box;
+	}
+	body{font: 12px/1.5 tahoma,arial,'Hiragino Sans GB',"宋体",sans-serif;}
+	.content{
+		height:150px;
+		overflow:hidden;
+		padding: 10px;
+		padding-right:0;
+		border:1px solid #EEEEEE;
+		margin-top:10px;
+		margin-bottom:50px;
+		width:600px;
+		margin-left:50px;
+	}
+	
+	.cell p{
+		padding: 10px;
+		background-color: #FFCB88;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+    
+	/*Start*/
+	.main{
+		width : 1000px;
+		margin: 0 auto;
+		background-color:#c1c1c1;
+	}
+
+    .top{
+		width:1000px;
+		height:40px;
+		background-color:rgba(1,1,1,0.5);
+	}
+	.left{
+		width:150px;
+		top:40px;
+		float:left;
+	}
+	
+	.theRight{
+		
+		width:800px;
+		top:40px;
+		border:1px solid #f2f2f2;
+		float:right;
+	}
+	
+	.fn-clear,.clearfix{zoom:1;}
+	.fn-clear:after,.clearfix:after{visibility:hidden;display:block;font-size:0;content:"1";clear:both;height:0;}
+
+	.controls{
+		width:100%;
+		padding-top：40px;
+	}
+	.controls tr td{
+		text-align:left;
+		vertical-align:top;
+	}
+	
+	label.kuma-label{
+		margin-left:10px;
+	}
+	
+	div.kuma-form-item{
+		padding:0 5px 15px 15px;
+	}
+	
+	input[type='submit'],input[type='button'],input[type='reset'] {
+		height:20px;
+		width:100px;
+	}
+	
+	label{display:inline-block;*zoom: 1; *display:inline; width:70px;}
+	select, textarea{width:168px;}
+
+	.sidepanel{
+		margin:20px 20px;
+		list-style:none inside none;
+	}
+	
+	
+	
+	.sidepanel li, .menu li{
+		height:25px;
+		width:120px;
+		background-color:#123456;
+		color:#fff;
+		line-height:25px;
+		margin:5px;
+		border-radius:5px;
+		padding-left:5px;
+		box-shadow: 3px 3px rgba(0, 0, 0, .6);
+	}
+	
+	.menu{
+		list-style:none inside none;
+		text-align:center;
+	}
+	
+	.menu li{
+		display:inline-block;
+	}
+	
+	.fn-hide{
+		display : none;
+	}
+
+	</style>
+	<link rel="stylesheet" type="text/css" href="https://s.tbcdn.cn/g/platform/common/s/1.1/global/global.css" />
+	<link rel="stylesheet" type="text/css" href="https://s.tbcdn.cn/g/alinw/kuma-form/2.0.1/kuma-form.css" />
+	<link rel="stylesheet" type="text/css" href="https://s.tbcdn.cn/g/alinw/dialog/2.0.6/dialog.css" />
+	<link rel="stylesheet" type="text/css" href="https://s.tbcdn.cn/g/alinw/scroller/1.0.0/scroller.css" />
+	<link rel="stylesheet" type="text/css" href="https://s.tbcdn.cn/g/alinw/calendar/1.1.17/calendar.css" />
+	
+	<!-- select-->
+	<link rel="stylesheet" href="https://s.tbcdn.cn/g/alinw/kuma-base/2.0.0/kuma-base.css">
+	<link rel="stylesheet" href="https://s.tbcdn.cn/g/alinw/kuma-select/2.0.1/kuma-select.css">
+	
+	<script src="http://static.alipayobjects.com/seajs/seajs/2.2.0/sea.js"></script>
+	<script src="http://alinw.alicdn.com/alinw/tip/2.2.2/tip.js"></script>
+    <script type="text/javascript">
+	seajs.config({
+		paths: {
+			'base': 'http://static.alipayobjects.com',
+			'alinw': 'http://alinw.alicdn.com/alinw'
+		},
+		alias: {
+			'$': 'jquery/1.7.2/jquery',
+			'jquery': 'jquery/1.7.2/jquery',
+			'Scroller':'alinw/scroller/1.0.1/scroller',
+			"Tip": "alinw/tip/2.2.2/tip",
+			'validator':'alinw/validator/3.1.4/validator',
+			'widget': 'arale-widget/1.2.0/widget',
+			'dialog':'alinw/dialog/2.0.6/dialog',
+			'confirmbox':'alinw/dialog/2.0.6/confirmbox',
+			'select':'alinw/select/2.0.7/select'
+		}
+	});
+	
+	seajs.use(['jquery', 'Scroller', 'validator','widget','dialog','confirmbox','select'], function($, Scroller, Validator, Widget, Dialog, ConfirmBox, Select) {
+		//滚动条
+		var scro = new Scroller({
+			trigger: $('.content')
+		});
+		
+		//添加校验
+		$(function(){
+			Widget.autoRenderAll();
+			var validator = new Validator({
+				element: '[name="form"]',
+				failSilently: true
+			});
+		});
+		
+		var dialog = new Dialog({
+			trigger: '#button',
+			width: '400',
+			height: '400',
+			content: $('#template').html()
+		});
+		
+		/*var confirmBox = new ConfirmBox({
+			trigger: '#confirm',
+			title: '我是标题',
+			message: '我是内容',
+			onConfirm: function() {
+				this.hide();
+			}
+		})*/
+		
+		$('#confirm').on('click', function(){
+			ConfirmBox.alert('I\'m confirmbox. ', function(){alert(1)}, {confirmTpl:null, cancelTpl :null}) 
+		})
+		
+		function getRadioValue(){
+			$('[name="radio"]:checked').value
+		}
+		
+		new Select({
+			width: 220,
+			trigger: '[name="select"]',
+			zIndex: 999
+		}).on('change', function(target, prev) {
+        // 获取所选option的value
+			console.log(target.data('value'));
+		});
+		
+		$('[name="select"]').on('change', function() {
+			console.log($(this).val());
+		});
+	
+	});
+	
+	
+
+
+	</script>
+  </head>
+  <body>
+<div class="main    fn-clear">
+<div class="top">
+	<ul class="menu"> 
+		<li>1+1</li>
+		<li>2+2</li>
+		<li>3+3</li>
+	</ul>
+
+</div>
+<div class="left">
+	<ul class="sidepanel"> 
+		<li>你好</li>
+		<li>你不好</li>
+		<li>大大大</li>
+	</ul>
+	<ol class="sidepanel">
+		<li>米菲</li>
+		<li>加菲猫</li>
+		<li>海绵宝宝</li>
+	</ol>
+</div>
+<div class="theRight">
+
+	
+	<form name="form"  data-widget="validator">
+	<table class="controls">
+		<tr>
+			<td width="150">
+				<label class="kuma-label">
+					<span class="kuma-form-required">*</span>text:
+				</label>
+			</td>
+			<td widht="*">
+				<div class="kuma-form-item">
+					<input type="text" width="150px" name='text' class="kuma-input" required data-errormessage-required="请输入文本" />
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label class="kuma-label">
+					<span class="kuma-form-required" >*</span>textarea:
+				</label>
+			</td>
+			<td>
+				<div class="kuma-form-item">
+					<textarea type="text" width="150px" class="kuma-input" required data-errormessage-required="请输入文本"></textarea>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label class="kuma-label">
+					<span class="kuma-form-required">*</span>radio:
+				</label>
+			</td>
+			<td>
+				<div class="kuma-form-item">
+					<input type="radio" name="radio" required data-errormessage-required="请选择是否。" id="yes" value='Y'><label for="yes">Yes</label></input>
+					<input type="radio" name="radio" id="no" value='N'><label for="no">No</label></input>
+				</div>
+			</td>
+		</tr>		
+		<tr>
+			<td>
+				<label class="kuma-label">
+					<span class="kuma-form-required">*</span>checkbox:
+				</label>
+			</td>
+			<td>
+				<div class="kuma-form-item">
+					<input type="checkbox" class="kuma-checkbox" name="checkbox" required data-errormessage-required="请选择方圆。" id="square" ><label width="100px" for="square">方</label></input>
+					<input type="checkbox" class="kuma-checkbox" name="checkbox" id="circle" ><label width="100px" for="circle">圆</label></input>
+				</div>
+			</td>
+		</tr>			
+		<tr>
+			<td>
+				<label class="kuma-label">
+					<span class="kuma-form-required">*</span>password:
+				</label>
+			</td>
+			<td>
+				<div class="kuma-form-item">
+					<input type="password" name="password" class="kuma-input" required data-display="密码"/>
+				</div>
+			</td>
+		</tr>	
+		<tr>
+			<td>
+				<label class="kuma-label">
+					<span class="kuma-form-required">*</span>select:
+				</label>
+			</td>
+			<td>
+				<div class="kuma-form-item">
+					<select name="select" class="kuma-input" required data-errormessage-required="请选择值。"/>
+					<option value=''></option>
+						<option value='1'>value1</option>
+						<option value='2'>value2</option>
+						<option value='3'>value3</option>
+					</select>
+				</div>
+			</td>
+		</tr>	
+		<tr>
+			<td>
+				<label class="kuma-label">
+					<span class="kuma-form-required">*</span>another select:
+				</label>
+			</td>
+			<td>
+				<div class="kuma-form-item">
+					<select name="anotherSelect" class="kuma-input" required data-errormessage-required="请选择值。"/>
+					<option value=''></option>
+						<option value='1'>value1</option>
+						<option value='2'>value2</option>
+						<option value='3'>value3</option>
+					</select>
+				</div>
+			</td>
+		</tr>			
+		<tr>
+			<td>
+				<label class="kuma-label">
+					<span class="kuma-form-required">*</span>multiple:
+				</label>
+			</td>
+			<td>
+				<div class="kuma-form-item">
+					<select name="multiple" multiple="multiple" width="150px" class="kuma-input" required data-errormessage-required="请选择海贼。"/>
+						<option value='1'>路飞</option>
+						<option value='2'>卓洛</option>
+						<option value='3'>娜美</option>
+					</select>
+				</div>
+			</td>
+		</tr>			
+		<tr>
+			<td>
+				<label class="kuma-label">
+					<span class="kuma-form-required">*</span>file:
+				</label>
+			</td>
+			<td>
+				<div class="kuma-form-item">
+					<input type="file" name="file" width="150px" required data-errormessage-required="请选择文件。"/>
+				</div>
+			</td>
+		</tr>	
+		<tr>
+			<td>
+				
+			</td>
+			<td>
+				<div class="kuma-form-item">
+					<input type="button" name="confirm" value='confirm' id="confirm"/>
+					<input type="button" name="button" value='嗯嗯嗯' id="button"/>
+					<input type="reset" name="reset"/>
+					<input type="submit" name="submit"/>
+				</div>
+			</td>
+		</tr>			
+	</table>
+	</form>
+	<div class="content first " >
+		<p>Aeolus was the ruler of the winds in Greek mythology. In fact this name was shared by three mythic characters. These three personages are often difficult to tell apart, and even the ancient mythographers appear to have been perplexed about which Aeolus was which. Diodorus Siculus made an attempt to define each of these three (although it is clear he also became muddled), and his opinion is followed here.[2] Briefly, the first Aeolus was a son of Hellen and eponymous founder of the Aeolian race; the second was a son of Poseidon, who led a colony to islands in the Tyrrhenian Sea; and the third Aeolus was a son of Hippotes who is mentioned in Odyssey book 10 as Keeper of the Winds who gives Odysseus a tightly closed bag full of the captured winds so he could sail easily home to Ithaca on the gentle West Wind. All three men named Aeolus appear to be connected genealogically, although the precise relationship, especially regarding the second and third Aeolus, is often ambiguous.</p>
+		<p>Aeolus was the ruler of the winds in Greek mythology. In fact this name was shared by three mythic characters. These three personages are often difficult to tell apart, and even the ancient mythographers appear to have been perplexed about which Aeolus was which. Diodorus Siculus made an attempt to define each of these three (although it is clear he also became muddled), and his opinion is followed here.[2] Briefly, the first Aeolus was a son of Hellen and eponymous founder of the Aeolian race; the second was a son of Poseidon, who led a colony to islands in the Tyrrhenian Sea; and the third Aeolus was a son of Hippotes who is mentioned in Odyssey book 10 as Keeper of the Winds who gives Odysseus a tightly closed bag full of the captured winds so he could sail easily home to Ithaca on the gentle West Wind. All three men named Aeolus appear to be connected genealogically, although the precise relationship, especially regarding the second and third Aeolus, is often ambiguous.</p>
+		<a id="target">scroll target</a></p>
+		<p>Aeolus was the ruler of the winds in Greek mythology. In fact this name was shared by three mythic characters. These three personages are often difficult to tell apart, and even the ancient mythographers appear to have been perplexed about which Aeolus was which. Diodorus Siculus made an attempt to define each of these three (although it is clear he also became muddled), and his opinion is followed here.[2] Briefly, the first Aeolus was a son of Hellen and eponymous founder of the Aeolian race; the second was a son of Poseidon, who led a colony to islands in the Tyrrhenian Sea; and the third Aeolus was a son of Hippotes who is mentioned in Odyssey book 10 as Keeper of the Winds who gives Odysseus a tightly closed bag full of the captured winds so he could sail easily home to Ithaca on the gentle West Wind. All three men named Aeolus appear to be connected genealogically, although the precise relationship, especially regarding the second and third Aeolus, is often ambiguous.</p>
+	</div>
+</div>
+</div>
+
+	<script id="template-service" type="text/plain">
+		
+	</script>
+	
+	<div id="template" class="fn-hide">
+		<p>aaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaa</p>
+		<p>aaaaaaaaaaaa</p>
+	</div>
+	
+  </body>
+</html>

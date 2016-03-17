@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>DIV Table</title>
+	<style>
+
+		div.table{
+			display:table;
+		}
+		
+		div.rowGroup{
+			display:table-row-group;
+			color: #510011;
+		}
+		
+		div.headerGroup{
+			display:table-header-group;
+		}
+		
+		div.footerGroup{
+			display:table-footer-group;
+		}
+		
+		div.colGroup{
+			display:table-column-group;
+			color: #11FF51;
+		}
+		
+		div.col{
+			display:table-column;
+			color: #11FF51;
+		}
+		div.row{
+			display:table-row;
+		}
+		
+		div.cell{
+			display:table-cell;
+			width:30px;
+			border:1px solid #202020;
+		}
+		
+		div.caption{
+			display:table=caption;
+			font-size:700;
+		}
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+	</script>
+  </head>
+  <body>
+	<div class="table">
+		<div class="caption">
+		标题
+		</div>
+		<div class="headerGroup">
+			<div class="cell">HG1</div>
+			<div class="cell">HG2</div>
+			<div class="cell">HG3</div>
+		</div>
+		<div class="colGroup">
+			<div class="col" style="background-color:pink;">Col1</div>
+			<div class="col">Col2</div>
+			<div class="col">Col3</div>
+		</div>
+		<div class="row">
+			<div class="cell">A1</div>
+			<div class="cell">A2</div>
+			<div class="cell">A3</div>
+		</div>
+		<div class="rowGroup">
+			<div class="row">
+				<div class="cell">B1</div>
+				<div class="cell">B2</div>
+				<div class="cell">B3</div>
+			</div>
+			<div class="row">
+				<div class="cell">C1</div>
+				<div class="cell">C2</div>
+				<div class="cell">C3</div>
+			</div>
+		</div>
+		<div class="footerGroup">
+			<div class="cell">FG1</div>
+			<div class="cell">FG2</div>
+			<div class="cell">HG3</div>
+		</div>
+  </div>
+	<div class="row">
+		<div class="cell">A1</div>
+		<div class="cell">A2</div>
+		<div class="cell">A3</div>
+	</div>
+	<div class="cell">A1</div>
+	<div class="cell">A2</div>
+	<div class="cell">A3</div>
+  </body>
+</html>

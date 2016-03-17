@@ -1,0 +1,50 @@
+git stash
+git stash  list
+git stash pop
+
+分支发布：
+git tag -a publish/1.0.44 -m 'publish/1.0.44'
+git tag -d pulish/1.0.44
+git push --tag
+
+git tag -a publish/1.2.2 -m 'publish/1.2.2'
+
+合并分支：
+git checkout master
+
+git checkout -b iss53
+//git branch iss53
+// git checkout iss53
+
+git merge iss53
+
+git branch -d hotfix //删除分支
+
+
+创建分支：
+git checkout master
+git pull
+git branch new_branch
+git checkout  new_branch
+ |
+ |
+ |
+\/
+git checkout -b new_branch
+
+删除本地分支：
+ git branch -d daily/1.0.27
+ 
+ 
+ git  diff: 可以产看当前没有add 的内容修改
+ git diff --cached: 查看已经add 没有commit 的改动
+ git diff HEAD 是上面两条的合并
+ git diff 版本号码1 版本号码2  src  ： 比较两个版本号码的src 文件夹的差异
+ 
+ 
+ 合并分支： 
+ git checkout daily/1.2.3
+ git pull origin daily/1.2.3
+ git checkout daily/1.2.4
+ git pull origin daily/1.2.4
+ git merge daily/1.2.3

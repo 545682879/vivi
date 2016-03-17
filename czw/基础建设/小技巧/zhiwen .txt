@@ -1,0 +1,210 @@
+﻿要了解的东西  
+
+
+1. position:relative; position:absolute; 区别?
+relative：元素相对于当前流定位。 left，top，right，buttom，相对于当前所在位置偏移
+absolute：元素相对于非static父元素定位。left，top，right，buttom，相对于当前非static父元素偏移
+2. display:inline-block; 这个东西是什么?
+3. display:inline;display:block;? 着两个区别？
+inline:元素不会换行显示，宽度，高度，margin上下属性不可用；
+block：元素换行显示，可设置宽，高，margin上下。
+inline-block：元素不换行显示，可设置宽高，margin上下。
+
+ie6/ie7下block无法使用inline-block fix：
+display: inline-block; *zoom: 1; *display:inline;
+
+4. jQuery内的 outerHeight height 这些的用法？
+height:行高；
+innerHeight：行高+补白
+outerHeight：行高+补白+边距
+outerHeight(true): 行高+补白+边距+边缘
+5. propertychange input事件的用法
+input:输入值发生改变时触发，可监听输入改变，复制粘贴，貌似不支持ie8
+propertychange：ie属性。
+
+
+ie9有bug，剪切删除时不好用。
+
+//
+<a href="/suit/evidence/showEvidence.htm?type={{evidenceType}}&id={{escapeUrl securityId}}" target="_blank" class="fn-btn-link JS-trigger-click-view">查看</a>
+target="_blank"  打开新的页面
+
+
+
+deploy/framework/tools/tomcat/conf/server.xml
+第150行添加下
+<Context path="" docBase="lassen.war"  /> 
+取消url中的lasesen路径
+----------------------------------------------------------------
+date.replace(/'-'/g, '/')
+new Date(date)
+if(''+date !== 'Invalid Date') //时间转换成功
+----------------------------------------------------------------
+    var jsonString= '[{"id":1,"courtId":1,"name":"余杭--民一庭","trialCourt":[{"accountId":14,"name":"zhangsi"}],"clerk":[{"accountId":28,"name":"zhangsan"}]},{"id":2,"courtId":1,"name":"余杭--民二庭","trialCourt":[{"accountId":2,"name":"zhangyi"}],"clerk":[{"accountId":3,"name":"zhanger"}]}]';
+      	console.log('0. ' + jsonString);
+   	console.log('1. ' + $.parseJSON( jsonString )[0].name);
+    	console.log('2. ' + JSON.parse( jsonString )[0].name);
+   	console.log('3. ' + eval( jsonString )[0].name);
+
+
+
+--------------------------------------------------------------------
+
+slice
+
+//IE8，IE9 $(this)不能获得jQuery元素。
+    $(".JS-trigger-click-clear").on('click', function(e){
+       $.each($(e.target).data("clear").split(" "), function(){
+          $(this.toString()).val("");
+       });
+    })
+
+background-size:cover;
+
+
+var input = document.createElement('input');
+    return 'placeholder' in input;
+
+
+
+    /**
+     * 兼容的发送消息机制
+     *
+     * @demo sendMessage("123");
+     * @method sendMessage
+     * @param messageStr {String} 消息字符串
+     */
+    sendMessage = function(messageStr) {
+        if(typeof messageStr === "object") {
+            messageStr = encodeURIComponent(json2str(messageStr));
+        };
+        // 特性判断 - 是否支持原生postMessage特性
+        if(window.postMessage) {
+            parent.postMessage(messageStr, "*");
+        } else {
+            if(isLargeWindowName()) {
+                throw 'window.name is full';
+            }
+            parent.name = (new Date()).getTime() + "[@]" + location.protocol + "//" + location.host + "[login-iframe-message]" + messageStr;
+        }
+    },
+
+
+
+
+//ie8不支持中间有空格: background:url("../img/date.png") no-repeat
+background:url("../img/date.png") no-repeat 100% 50%
+background: url(../img/date.png) no-repeat center right
+
+document.documentMode:IE属性，值是ie版本。
+
+
+
+	//事件：收藏
+	delegate.on('click', '.JS-trigger-click-favorite', function(){
+		if (document.all){    
+	        try{    
+	            window.external.addFavorite(window.location.href, document.title);    
+	        }catch(e){    
+	            alert( "加入收藏失败，请使用Ctrl+D进行添加" );    
+	        }    
+	    }else if (window.sidebar){    
+	        window.sidebar.addPanel(document.title, window.location.href, "");    
+	     }else{    
+	        alert( "加入收藏失败，请使用Ctrl+D进行添加" );    
+	    }
+	});
+	
+	&emsp;  一个字符的距离。
+	
+	//日期的验证表达式
+	var formatDataRex = /^(yyyy)(.MM)?(.dd)?(.HH)?(.mm)?(.ss)?$/,
+	return format.replace(formatDataRex, function(){
+				var index = 0,
+					val,
+					obj,
+					arr = [];
+				while(obj = arguments[++index]){
+					if(!obj){
+						break
+					}
+					val = date[formatDataFoo[index - 1]]();
+					//年份的处理
+					if(index === 1){
+						arr.push(''+val);
+					}else{
+						//月份的处理
+						index === 2 && val++;
+						arr.push(obj.slice(0, 1) + formatDataAddZero(val));
+					}
+				}
+				return arr.join('');
+			});
+	
+	
+	//得到后两位
+	('00' + val).slice(-2);
+	
+	window.opener&&window.opener.top.reload&&window.opener.top.reload()
+	
+	
+	
+	~~ 类型转换：
+	~~true == 1
+	~~false == 0
+	~~"" == 0
+	~~[] == 0
+
+	~~undefined ==0
+	~~!undefined == 1
+	~~null == 0
+	~~!null == 1
+	
+	
+-------------------------------------------------------------------------------------------------------------------------------------
+	浏览器       I E6	IE7	IE8	FF
+ 符号
+*	     √	√	×	×
+!important     ×    √	×	√
+_	     √	×	×	×
+\9	     ×	×	√	×
+*html	     √	×	×	×
+*+html	     ×	√	×	×
+ 
+说明：”√”代表能识别；” ×”代表不识别
+1、  案例一（常用）
+如果各个浏览器的高度都不相同，代码如下：
+.warp{
+Height:100px;          /*IE6、IE7、IE8、FF识别*/
+Height:110px\9;       /*IE8识别*/
+*height:120px!important;        /*IE7 识别*/
+*height:130px;           /*IE6、IE7识别，但上一段代码中!important的级别比*号的级别高，所以此段代码只有IE6中才有效*/
+}
+ 
+2、  案例二
+如果各浏览器高度只有IE6和IE7中相同，而FF不同，代码如下：
+.warp{
+Height:100px;     /*IE6 、IE7、 IE8、FF识别*/
+*height:120px;    /*IE6、IE7识别*/
+}
+ 
+3、  案例三
+对各浏览器单独写不同代码，如下：
+.warp{  height:200px; }  /* IE6 、IE7、 IE8、FF识别*/
+.warp{  height:300px\9;}  /*IE8识别*/
+*html  .warp{  hegith:210px; }  /*IE6识别*/
+*+ html  .warp{  height:300px;}  /*IE7识别*/
+ 
+4、  案例四
+如果各浏览器高度相同只有IE6的不同，代码如下：
+.warp{
+           Height:100px;    /* IE6 、IE7、 IE8、FF识别*/
+           _Height:120px;  /*IE6识别*/
+}
+-------------------------------------------------------------------------------------------------------------------------------------
+
+checkout  daily/1.0.4
+npm install
+额外的操作
+npm install -g anywhere
+npm install -g gulp

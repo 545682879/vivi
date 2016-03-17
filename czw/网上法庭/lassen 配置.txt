@@ -1,0 +1,286 @@
+D:\alibaba\lassen\deploy\target\web-deploy\deploy
+把lassen.war改成ROOT
+
+deploy/framework/tools/tomcat/conf/server.xml
+第150行添加下
+<Context path="" docBase="lassen.war"/> 
+取消url中的lasesen路径
+
+mvn clean install -Dmaven.test.skip=true
+
+D:\alibaba\lassen\deploy\target\web-deploy\bin\catalina.bat
+D:\alibaba\lassen\deploy\framework\tools\tomcat\bin\catalina.bat
+ -Dhsf.server.ip=100.81.98.214
+
+
+23200465
+
+
+#10.218.140.97  lassen.alitest.com  （日常环境，永远存在，直到项目结束）
+#100.69.182.57  lassen.alitest.com（二期测试环境，11月3号上线后消失）
+100.69.181.15   lassen.alitest.com（紧急发布环境，今天上线后消失）
+
+
+立案：lassen.alitest.com/court/putOnRecord/myCase.htm 
+分案：http://lassen.alitest.com/court/divisionCase/myCase.htm
+学石(彤彤_了尘) (14:31:57): 
+42.156.239.251  login-openaccount.daily.taobao.net
+10.218.145.153  lassendb.alibaba.com
+100.69.173.207 lassen.alitest.com
+
+100.69.180.134 ceresiner.alitest.com
+
+15000500050 原告 a111111
+16000600060 被告（参合）a111111 
+17000700070 被告（通元）a111111
+13000000001 调解员 a111111
+18080808080 立案庭 a111111
+18088888888 审判庭 a111111
+
+
+余杭区法院
+13000000001 调解员 a111111
+18080808080 立案庭 a111111
+18088888888 审判庭 a111111
+19099999999 书记员 a111111
+
+西湖区法院
+11111111111 调解员
+11111111112 立案法官
+11111111113 审判法官
+11111111114 书员
+
+滨江区法院
+11111111115 调解员
+11111111116 立案法官
+11111111117 审判法官
+11111111118 书记员
+filingTime
+开发环境：
+原告 15088888888
+被告 12345678901 (ziranren) 13579246810(faren)
+审判庭 13811093536
+立案庭  15088888889
+解决待判决案件13811093536
+230128198206118639
+
+http://localhost/suit/quickCase/quickAllCase.htm
+
+http://localhost/account/myMediatorSuit.htm
+
+系统管理:http://lassen.alitest.com/manager/index.htm
+http://lassen.alitest.com/manager/mediator/mediator.htm
+
+13520361428 系统管理员 a111111
+10000000001 运维人员 a111111
+
+15000500050 原告 a111111
+16000600060 被告（参合）a111111 (买卖交易纠纷)
+17000700070 被告（通元）a111111 （买卖交易纠纷）
+13367651616 被告（商轲）a111111 （著作权侵权纠纷）
+
+余杭区法院
+13000000001 调解员 a111111
+18080808080 立案庭 a111111
+18088888888 审判庭 a111111
+19099999999 书记员 a111111
+
+西湖区法院
+11111111111 调解员
+11111111112 立案法官
+11111111113 审判法官
+11111111114 书记员
+
+滨江区法院
+11111111115 调解员
+11111111116 立案法官
+11111111117 审判法官
+11111111118 书记员
+
+淘宝测试环境：http://www.daily.taobao.net/
+淘小宝买东西
+
+
+15111111111  原告
+15222222222  被告一
+15333333333  被告二   
+15444444444  调解员
+15555555555  立案法官
+15666666666  审判法官
+15777777777  书记员
+15888888888  运维人员
+
+
+
+F1：显示 Internet Explorer帮助，或显示对话框中某个项目的相关帮助信息
+F11：在全屏幕和常规浏览器窗口之间进行切换
+TAB：在Web页，地址栏和链接栏中向前移动到下一个项目
+Shift+TAB：在Web页，地址栏和链接栏中向后返回到上一个项目
+ALT+HOME：进入你的主页
+ALT+向右箭头：转到下一页
+ALT+向左箭头或backspace：返回上一页
+Shift+F10：显示某个链接的快捷菜单
+CTRL+TAB或F6：在框架之间向前移动
+Shift+CTRL+TAB：在不同框架之间向后移动
+向上箭头：向文档起始处滚动
+向下箭头：向文档结尾处滚动
+PAGE UP：向文档起始处翻页
+PAGE DOWN：向文档结尾处翻页
+HOME：移动到文档的开头
+END：移动到文档的结尾
+CTRL+F：在Web页中查找
+F5或CTRL+R：仅当Web上的页面与本机存储的Web页时间戳不同时，才刷新当前Web页
+CTRL+F5：即使Web页上的页面与本机存储的Web页时间戳相同，仍然刷新当前Web页
+ESC：停止下载Web页
+CTRL+O或CTRL+F：转到新位置
+CTRL+N：打开新窗口
+CTRL+W：关闭当前窗口
+CTRL+S：保存当前页
+CTRL+P：打印当前页或当前框架
+ENTER：激活选定的链接
+CTRL+E：在浏览栏中打开搜索页
+CTRL+I：在浏览栏中打开收藏夹
+CTRL+H：在浏览栏中打开历史记录
+CTRL+单击：在历史记录或收藏栏上，打开多个文件夹<PIXTEL_MMI_EBOOK_2005>1
+
+
+
+                               <!-- {{#isEqual actionUrl 'javascript'}}
+                                 <a target="_blank" class="fn-color-047DC6 JS-trigger-endSchedule" href='javascript:void(0);' data-securityid="{{../securityId}}">{{actionI18n}}</a><br/>
+                                {{#else}}
+                                  <a target="_blank" class="fn-color-047DC6" href='{{actionUrl}}{{../securityId}}' target="_blank">{{actionI18n}}</a><br/>
+                                {{/isEqual}} -->
+
+bug:
+法律依据：
+http://lassen.alitest.com/court/divisionCase/divisionCase.htm?spm=0.0.0.0.ZkTBBI&securityCaseId=c310GGZu39GC8bjTn4-SLg
+
+
+//庭审排期
+/* test date
+    delegate.on('click', '.JS-trigger-click-save', function(){
+                var validatorExp = Validator.use('#courtSchedue-form');
+                validatorExp.execute(function(flag, err){
+                    if(!flag){
+                        $("input[name='scheduleTime']").val(new Date($("#holdHearing").val().replace(/-/g, '/')).getTime());
+                        
+                        new Ajax({
+                            request: $(".JS-trigger-click-schedule").data("request")+"?securityCaseId="+encodeURIComponent($("input[name='securityCaseId']").val()), 
+                            paramName: "courtScheduleDo",
+                            parseForm: $("#courtSchedue-form")
+                        }).on('ajaxSuccess', function(rtv, msg, con){
+                            location.href = "courtSchedue.htm?securityCaseId="+encodeURIComponent($("input[name='securityCaseId']").val());
+                        }).submit();
+
+                    }
+                });
+            })
+*/
+
+
+
+取消报名认证为客户成功取消报认证为客户成功取消报名认证为客户成功取消报名认证为客户成功取消报名认证为客户功取消报名认证户123
+case2：中文+英文+特殊字符输入
+特殊字符为：~！@#￥%……&*（）--+ 空格 TAB键
+结果：可正常输入，保存后，显示正常
+case3：html元素输入
+如：</td>   <div>/</div>  等
+结果：可正常输入，保存后，显示正常
+取消报名认证为客户成功取消报认证为客户成功取消报名认证为客户成功取消报名认证为客户成功取消报名认证为客户功取消报名认证户123
+case2：中文+英文+特殊字符输入
+特殊字符为：~！@#￥%……&*（）--+ 空格 TAB键
+结果：可正常输入，保存后，显示正常
+case3：html元素输入
+如：</td>   <div>/</div>  等
+结果：可正常输入，保存后，显示正常
+取消报名认证为客户成功取消报认证为客户成功取消报名认证为客户成功取消报名认证为客户成功取消报名认证为客户功取消报名认证户123
+case2：中文+英文+特殊字符输入
+特殊字符为：~！@#￥%……&*（）--+ 空格 TAB键
+结果：可正常输入，保存后，显示正常
+case3：html元素输入
+如：</td>   <div>/</div>  等
+结果：可正常输入，保存后，显示正常
+
+e.stopPropagation()
+
+
+    require('bus/global/main');
+	//依赖
+    var $ = require('$'),
+    	Upload = require('model/upload/main'),
+     	delegate = require('common/delegate'),
+        Validator = require('common/validator'),
+     	Ajax = require('model/ajax/main');
+
+    var validatorExp = Validator.use('#mediate-form');
+    
+    delegate.on('click', '.JS-trigger-click-save', function(){
+		handleAction();
+    });
+
+	var uploadExp = Upload.use('.JS-trigger-click-upload');
+
+    function handleAction(){
+		new Ajax({
+			request: "/court/lassenCourtJudgmentRpc/saveCourtJudgment.json?securityCaseId="+encodeURIComponent($("input[name='securityCaseId']").val()), 
+			paramName: "lassenCourtJudgmentVo",
+			parseForm: $("#writtenJudgment-form")
+		}).on('ajaxSuccess', function(rtv, msg, con){
+			location.href = "writtenJudgment.htm?securityCaseId="+encodeURIComponent($("input[name='securityCaseId']").val());
+		}).submit();
+    }
+
+	
+	
+1.庭审排期：
+#if ($!caseStatus == "put_proof" || $!caseStatus == "wait_trial" || $!caseStatus == "trial_ing")
+
+2.争议焦点
+
+3. 编写判决书
+$!lassenCourtJudgmentVo.status=='wait_decision'
+
+4. 管辖异议处理
+
+5. 撤诉处理
+
+6. 和解
+$!status!='conciliate'
+
+
+1.撤诉处理
+2. 当事人送达处理
+3. 管辖异议处理
+4. 和解
+
+ sentenced: "已判决",
+ jurisediction_objection: "管辖异议成立",
+ dropped: "原告已撤诉",
+         conciliate: "和解",
+        not_accepted: "不予受理",
+        not_be_served: "被告无法送达",
+        cancel_apply: "撤销申请"
+		
+		
+
+		
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS  WHERE TABLE_SCHEMA = 'lassendb' and column_name = 'nation'
+
+//操作数据库
+update lassen_legal_case set fact = '权利来源:原创
+权利产生时间:2015-07-15
+权利凭证:原创底稿
+侵权商品链接地址:http://localhost/suit/start/c
+侵权卖家店铺名称:名称
+侵权说明:名称' where id = 290 
+
+不可用的date
+input:disabled.fn-input-text-date, input[disabled].fn-input-text-date{background: #F2F2F2 url("../img/date.png") no-repeat 100% 50%;}
+
+230128198206118639
+
+
+git branch --set-upstream-to=origin daily/1.0.44
+
+查询调解员账号：
+select * from lassen_account, lava_role_org_user, lava_role where lassen_account.id = lava_role_org_user.user_id and lava_role_org_user.role_id = lava_role.id and lava_role.role_type = 'mediator'

@@ -1,0 +1,59 @@
+/*新字体 regiconfont*/
+@font-face {
+    font-family: 'regiconfont';
+    src: url('//at.alicdn.com/t/font_1408947319_9759417.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/font_1408947319_9759417.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_1408947319_9759417.wosff') format('woff'), /* chrome銆乫irefox */
+    url('//at.alicdn.com/t/font_1408947319_9759417.ttf') format('truetype'), /* chrome銆乫irefox銆乷pera銆丼afari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/font_1408947319_9759417.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+/*密码提示*/
+#pwd-tip{z-index:1000;}
+#pwd-secure{height:100px;width:260px;border:1px #C2C8C8 solid;padding:20px;font-size:12px;font-style:normal;display:inline-block;background-color:#fff;margin-left:5px;}
+#pwd-secure .secure-strenth div{display:inline-block;float:left;}
+#pwd-secure .secure-strenth div.pwd-strenth{margin:0 1px;}
+.pwd-strenth{height:10px;width:25px;background-color:#C2C8C8;}
+.secure-rule{margin-top : 10px;}
+.secure-rule p{line-height:25px;}
+.iconfont{font-family:"regiconfont"!important;font-size:12px;font-style:normal;-webkit-font-smoothing: antialiased;-webkit-text-stroke-width: 0.2px;-moz-osx-font-smoothing: grayscale;font-weight:bold;margin-right: 3px;}
+.pw-tip-arr{display: inline-block;width: 7px;height: 9px;top: 63px;background: #fff url(../img/arr-left.png) no-repeat center;z-index:1001;position:absolute;}
+.pwd-ok-color{color : #14C3B6;;}
+.pwd-error-color{color : red;}
+#pwd-ok{position: absolute;display : inline;font-size:13px;}
+#pwd-ok i{font-size:14px;}
+#pwd-error{position: absolute;display : inline;font-size:13px;}
+#pwd-error i{font-size:14px;}
+#pwd-can-use{padding-left: 15px;}
+#pwd-strenth-degree-hint{padding-left:5px;}
+
+<div id="pwd-ok" style="display:none">
+<i class="iconfont pwd-ok-color">&#xf0156;</i><span class="rule_text">密码安全程度：</span><span id="pwd-strenth-degree-hint"></span>
+</div>
+
+<div id="pwd-error" class="pwd-error-color" style="display:none">
+<i class="iconfont">&#xf0155;</i><span class="rule_text">密码不符合要求，请重新设置</span>
+</div>
+
+<div id="pwd-tip" class="clr" style="display:none;">
+<i class="pw-tip-arr"></i>
+<div id="pwd-secure" class="clr">
+  <div class="secure-strenth clr">
+	<div class="secure-strenth_text">安全程度：</div>
+	<div id="pwd-strenth1" class="pwd-strenth"></div>
+	<div id="pwd-strenth2" class="pwd-strenth"></div>
+	<div id="pwd-strenth3" class="pwd-strenth"></div>
+	<span id="pwd-strenth-degree"></span>
+  </div>
+  <div class="secure-rule clr"> 
+	<p>
+		<i class="iconfont" id="rule1">&#xe611;</i><span class="rule_text">6-20个字符</span>
+	</p>
+	<p>
+		<i class="iconfont" id="rule2">&#xe611;</i><span class="rule_text">只能包含字母、数字以及标点符号（除空格）</span>
+	</p>
+	<p>
+		<i class="iconfont" id="rule3">&#xe611;</i><span class="rule_text">字母、数字和标点符号至少包含2种</span>
+	</p>
+  </div>
+</div>
+</div>

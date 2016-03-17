@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="content-type" content="text/html;charset=gbk"/>
+<meta http-equiv="content-style-type" content="text/css"/>
+<meta http-equiv="content-script-type" content="text/javascript"/>
+<meta name="version" content="neblog-1.0"/>
+<meta name="author" content="vivichen"/>
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<title>title</title>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+<link type="text/css" rel="stylesheet" href=""/>
+<style type="text/css">
+
+@font-face {
+    font-family: 'regiconfont';
+    src: url('http://at.alicdn.com/t/font_1408947319_9759417.eot'); /* IE9*/
+    src: url('http://at.alicdn.com/t/font_1408947319_9759417.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('http://at.alicdn.com/t/font_1408947319_9759417.woff') format('woff'), /* chrome銆乫irefox */
+    url('http://at.alicdn.com/t/font_1408947319_9759417.ttf') format('truetype'), /* chrome銆乫irefox銆乷pera銆丼afari, Android, iOS 4.2+*/
+    url('http://at.alicdn.com/t/font_1408947319_9759417.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+
+*{
+	padding:0; 
+	margin:0;
+	font-family: tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+}
+
+#pwd-tip{
+	z-index:50;
+}
+
+#pwd-secure{
+	height:100px;
+	width:260px;
+	border:1px #C2C8C8 solid;
+	padding:20px;
+	font-size:12px;
+	font-style:normal;
+	display:inline-block;
+}
+
+.clr{
+	zoom:1;
+}
+
+#pwd-secure .secure-strenth div{
+	display:inline-block;
+	float:left;
+}
+
+#pwd-secure .secure-strenth div.pwd-strenth{
+	margin:0 1px;
+}
+
+.pwd-strenth{
+	height:10px;
+	width:25px;
+	background-color:#C2C8C8;
+}
+
+.secure-rule{
+	margin-top : 10px;
+}
+
+.secure-rule p{
+	line-height:25px;
+}
+
+.low{
+	background-color:#FF460F;
+}
+
+.middle{
+	background-color:#FF6A00;
+}
+
+.high{
+	background-color:#0A9E00;
+}
+
+.iconfont{
+    font-family:"regiconfont"!important;
+    font-size:12px;
+	font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+	font-weight:bold;
+	margin-right: 3px;
+	vertical-align: middle;
+	color:#C2C8C8;
+}
+
+.pwd-rule-pass{
+  color:green;
+}
+
+.clr:after{
+  content: "020"; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;  
+  }
+  
+.pw-tip-arr{
+  display: inline-block;
+width: 7px;
+height: 140px;
+background: #fff url(./arr-left.png) no-repeat center;
+margin-right:-6px;
+}
+
+</style>  
+</head>
+<body onload="" id="" class="">
+<form  action="#">  
+<div style="height:300px; width:500px"> ----------- </div>
+<input id="input" style="" />
+
+<div id="pwd-tip" class="clr" style="display:none;">
+<i class="pw-tip-arr"></i>
+<div id="pwd-secure" class="clr">
+  <div class="secure-strenth clr">
+	<div class="secure-strenth_text">安全程度：</div>
+	<div id="pwd-strenth1" class="pwd-strenth"></div>
+	<div id="pwd-strenth2" class="pwd-strenth"></div>
+	<div id="pwd-strenth3" class="pwd-strenth"></div>
+	<span id="pwd-strenth-degree"></span>
+  </div>
+  <div class="secure-rule clr"> 
+	<p>
+		<i class="iconfont" id="rule1">&#xe611;</i><span class="rule_text">6-20个字符</span>
+	</p>
+	<p>
+		<i class="iconfont" id="rule2">&#xe611;</i><span class="rule_text">只能包含字母、数字以及标点符号（除空格）</span>
+	</p>
+	<p>
+		<i class="iconfont" id="rule3">&#xe611;</i><span class="rule_text">字母、数字和标点符号至少包含2种</span>
+	</p>
+  </div>
+<div>
+</div>
+</form>  
+
+<script type="text/javascript">
+$(function(){ 
+    $("#input").on({
+	
+	focus:function(){
+		var p = $("#input").position();
+		var aLeft = (p.left+$("#input").outerWidth()+5) + "px";
+		var aTop = (p.top - 60 ) + "px";
+		$("#pwd-tip").css({display: "block", position:"absolute", left: aLeft, top:aTop})
+		passwordCheck($("#input"));
+	},
+	blur:function(){
+		$("#pwd-tip").css({display :"none"});
+	},
+	keyup:function(){
+		passwordCheck($("#input"));
+	}
+	});
+	
+
+	
+});  
+
+	function passwordrule(){
+		return {
+		regex: {illegal: /[^-+=|,0-9a-zA-Z!@#$%^&*?_.~\\(){}\[\]<>]/,
+			allNumber: /^\d+$/,
+			allLetter: /^[a-zA-Z]+$/,
+			allCharacter: /^[-+=|,!@#$%^&*?_.~\\(){}\[\]<>]+$/,
+			allSame: /^([\s\S])\1*$/,
+			upperLetter: /[A-Z]/,
+			owerLetter: /[a-z]/,
+			number: /\d/g,
+			character: /[-+=|,!@#$%^&*?_.~\\()|{}\[\]<>]/
+			},
+		score: function(e) {
+            var t = 0;
+			
+            if (this ==null || this == "" || this.isIllegal(e)){
+                return t;
+				}
+            var n = this.size(e);
+            4 >= n ? t += 5 : n > 4 && 8 > n ? t += 10 : n >= 8 && (t += 25);
+            var o = this.hasLowerAndUpperLetter(e), s = this.hasLetter(e);
+            o ? t += 20 : s && (t += 10);
+            var i = this.hasNumber(e);
+            i >= 3 ? t += 20 : i && (t += 10);
+            var r = this.hasCharacter(e);
+            return r >= 3 ? t += 25 : r && (t += 10), o && i && r ? t += 10 : s && i && r ? t += 5 : (s && i || s && r || i && r) && (t += 2), t
+        },level: function(e) {
+		   console.log("score:"+this.score(e))
+            return Math.floor(this.score(e) / 10)
+        },size: function(e) {
+            return e.length
+        },isIllegal: function(e) {
+            return !!e.match(this.regex.illegal)
+        },isAllNumber: function(e) {
+            return !!e.match(this.regex.allNumber)
+        },isAllLetter: function(e) {
+            return !!e.match(this.regex.allLetter)
+        },isAllSame: function(e) {
+            return !!e.match(this.regex.allSame)
+        },hasNumber: function(e) {
+            return (e.match(this.regex.number) || []).length
+        },hasLetter: function(e) {
+            return !!e.match(this.regex.lowerLetter) || !!e.match(this.regex.upperLetter)
+        },hasLowerAndUpperLetter: function(e) {
+            return !!e.match(this.regex.lowerLetter) && !!e.match(this.regex.upperLetter)
+        },hasNumberAndLetter: function(e) {
+            return !(!e.match(this.regex.number) || !e.match(this.regex.lowerLetter) && !e.match(this.regexp.upperLetter))
+        },hasCharacter: function(e) {
+            return (e.match(this.regex.character) || []).length
+        }
+	}
+}
+
+function passwordCheck(el){
+	var n = passwordrule();
+	//console.log(el.val());
+	function check() {
+            var e = el.val(), 
+			t = {
+				length: n.size(e) >= 6 && 20 >= n.size(e),
+				legal: !!n.isIllegal(e),
+				multi: !!(n.hasNumber(e) && n.hasLetter(e) || n.hasNumber(e) && n.hasCharacter(e) || n.hasLetter(e) && n.hasCharacter(e))};
+            return t
+        };
+	function validate() {
+			var t = this.check();
+            return t.length && t.legal && t.multi;
+        };
+	function strength() {
+            var e = el.val(), t = n.level(e);
+			//console.log("level:"+t)
+            return t >= 8 ? 3 : t >= 3 ? 2 : t >= 1 ? 1 :0
+        };
+	var checkResult = check(),
+	strs = strength();
+		
+	//console.log("checkResult legal:"+checkResult.legal);
+	//console.log("checkResult length:"+checkResult.length);
+	////console.log("checkResult multi:"+checkResult.multi);
+	//console.log("strs:"+strs);
+	switch (strs){
+		case 3 : 
+			$("#pwd-strenth1").css("background-color", "#22a43a");
+			$("#pwd-strenth2").css("background-color", "#22a43a");
+			$("#pwd-strenth3").css("background-color", "#22a43a");
+			$("#pwd-strenth-degree").css("color", "#22a43a").html("高");
+			break;
+		case 2 :
+			$("#pwd-strenth1").css("background-color", "#ff7d1b");
+			$("#pwd-strenth2").css("background-color", "#ff7d1b");
+			$("#pwd-strenth3").css("background-color", "#C2C8C8");
+			$("#pwd-strenth-degree").css("color", "#ff7d1b").html("中");
+			break;
+		case 1 :
+			$("#pwd-strenth1").css("background-color", "#ff1e01");
+			$("#pwd-strenth2").css("background-color", "#C2C8C8");
+			$("#pwd-strenth3").css("background-color", "#C2C8C8");
+			$("#pwd-strenth-degree").css("color", "#ff1e01").html("低");
+			break;
+		default : 
+			$("#pwd-strenth1").css("background-color", "#C2C8C8");
+			$("#pwd-strenth2").css("background-color", "#C2C8C8");
+			$("#pwd-strenth3").css("background-color", "#C2C8C8");
+			$("#pwd-strenth-degree").css("color", "#C2C8C8").html("");
+	}
+
+	var rule = {1 : "length", 2 :"legal", 3:"multi"};
+	
+	for(i=1; i<=3; i++){
+	  if(checkResult[rule[i]]){
+		$("#rule"+i).css("color", "red");
+	  }else{
+		$("#rule"+i).css("color", "#C2C8C8");
+	  }
+	}
+	
+}
+</script>
+</body>
+</html>

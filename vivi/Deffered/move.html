@@ -1,0 +1,76 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>添加表单、复制、删除表单元素</title>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  </head>
+  <body>
+    <div id="content" ><span style='color:red;'>content</span></div>
+	  <button name="example">example</button>
+    <!--  <script type="text/babel" src="scripts/example.js"></script> -->
+    <script type="text/javascript">
+		  (function(){
+        $('#content').after('<p>after</p>');
+        $('<p>content</p>').insertAfter($('#content'));
+
+        $('#content').append('<p>append</p>');
+        $('<p>appendTo</p>').appendTo($('#content'));
+
+        //$('#example').before('<span>bbbbbbbb</span>');
+        //$('<span> def </span>').insertBefore($('#example'));
+
+        $('#content').before('<p style="color:orange;">before</p>');
+        $('<p style="color:orange;">insertBefore</p>').insertBefore($('#content'));
+
+        $('#content').prepend('<p style="color:blue;">prepend</p>');
+        $('<p style="color:blue;">prependTo</p>').prependTo($('#content'));
+
+        var example = $('[name="example"]');
+        example.on('click', function(){
+          alert('click!');
+        });
+
+        //clone 不会复制事件
+        var clone = example.clone();
+        clone.insertAfter(example);
+
+        clone.on('click', function(){
+          alert('click clone!');
+        });
+        
+        setTimeout(function(){
+            //不保留被删除元素的事件
+            $('[name="example"]:last').remove();
+
+            //保留被删除元素的事件
+            $('[name="example"]:last').detach();
+
+            setTimeout(function(){
+              clone.insertAfter(example);
+            }, 2000);
+
+          }, 2000);
+
+          //alert($('#after').html());
+          
+
+        })();
+
+        $(document).ready(function(){
+
+        });
+
+        $(function() {
+          // Handler for .ready() called.
+          alert($('#after').html());
+        });
+
+    </script>
+
+    <div id='after'>after</div>
+
+  </body>
+</html>
