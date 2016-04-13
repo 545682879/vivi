@@ -2,11 +2,12 @@ var webpack = require('webpack');
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
 module.exports = {
   entry: {
-    entry: './src1/entry.jsx',
-	frame: './src1/frame.jsx'
+	div: './src/div.jsx',
+    hello: './src/hello.jsx',
+    entry: './src/entry.jsx'
   },
   output: {
-	path: './dist1',
+	//path: './dist',
     filename: "[name].js",
   },
   resolve: {
@@ -20,6 +21,5 @@ module.exports = {
       test: /\.jsx$/,
       loader: 'babel-loader!jsx-loader?harmony'
     }]
-  },
-  plugins: [commonsPlugin]
+  }
 };

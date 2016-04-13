@@ -205,6 +205,5 @@ Height:100px;     /*IE6 、IE7、 IE8、FF识别*/
 
 checkout  daily/1.0.4
 npm install
-额外的操作
 npm install -g anywhere
 npm install -g gulp
