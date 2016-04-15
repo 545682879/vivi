@@ -1,0 +1,27 @@
+.fn-left {
+  float: left;
+  _display: inline; }
+
+.fn-right {
+  float: right;
+  _display: inline; }
+  
+.fn-input-text {
+  vertical-align: top;
+  *vertical-align: middle;
+  *margin-top: -1px;
+  *margin-bottom: -1px; }
+  
+.fn-text-justify {
+  text-align: justify;
+  text-justify: inter-ideograph; }
+  
+.fn-wrap {
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal; }
+
+.fn-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }

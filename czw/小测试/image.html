@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Image</title>
+	<style>
+		
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://static.alipayobjects.com/seajs/seajs/2.2.0/sea.js"></script>
+    <script type="text/javascript">
+	
+		(function(){
+			
+		})();
+		$(function(){
+			var img = new Image();
+			img.onload = function(e){
+				console.log('onload');
+				console.log(img.clientWidth, img.clientHeight);
+				console.log(img.clientWidth, img.clientHeight);
+				$("body").append(img);
+			};
+			img.onerror = function(e){
+				console.log('onerror');
+			};
+			img.width = 800;
+			img.height = 600;
+			img.src = "Chrysanthemum.jpg";
+		});
+
+	</script>
+  </head>
+  <body>
+	<div></div>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Event</title>
+	<style>
+		
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://static.alipayobjects.com/seajs/seajs/2.2.0/sea.js"></script>
+    <script type="text/javascript">
+	
+		(function(){
+			
+		})();
+		
+		$(function(){
+			//addOption();
+		});
+		
+		function addOption(target){
+			var items = [{"key":"k1", "value":"v1"}, {"key":"k2", "value":"v2"}, {"key":"k3", "value":"v3"}];
+			$.each(items, function(index, val){
+				var flag = false;
+				if(index == 1){
+					flag = true;
+				}
+				var opt =  new Option(val.key, val.value, flag, flag);
+				$("#select")[0].add(opt);
+				//$("#select")[0].options.add(opt);
+				//obj.options[index] = opt;
+			});
+			$(target).prop('disabled', true);
+		}
+		
+		function removeOption(){
+			var index = $("#select")[0].selectedIndex;
+			console.log(index)
+			$("#select")[0].options.remove(index);
+		}
+		
+		function removeAllOption(){
+			$("#select")[0].options.length = 0;
+		}
+		
+		function getValue(){
+			var opts = $("#select")[0];
+			var index = $("#select")[0].selectedIndex;
+			alert(opts[index].text + "  " + opts[index].value);
+		}
+	</script>
+  </head>
+  <body>
+	<select id="select"> </select> 
+	<button value="Add Option" onClick="addOption(this);" >Add Option</button>
+	<button value="Remove Option" onClick="removeOption();">Remove Option</button>
+	<button value="Get value" onClick="getValue();">Get value</button>
+  </body>
+</html>
