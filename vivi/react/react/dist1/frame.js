@@ -6,8 +6,35 @@ webpackJsonp([1],{
 	let React = __webpack_require__(1);
 	let ReactDOM = __webpack_require__(158);
 	let TimeUp = __webpack_require__(160);
-	console.log('TimeUp', TimeUp);
+
+	seajs.config({
+		base: 'http://static.alipayobjects.com',
+		alias: {
+			'jquery': 'jquery/1.7.2/jquery',
+			'index': 'arale-qrcode/1.1.0/index'
+		}
+	});
+
+	//console.log('TimeUp',TimeUp);
 	/*
+	console.log('sea',sea);
+
+	console.log('sea',seajs);
+		seajs.config({
+			paths: {
+				jquery: 'https://alinw.alipayobjects.com/jquery',
+				arale: 'https://alinw.alipayobjects.com/arale'
+			},
+			alias: {
+				"jquery": 'jquery/1.7.2/jquery'
+			}
+		});
+		
+		seajs.use(['jquery'], function($){
+			console.log('a',$);
+		});
+
+
 	var Frame =React.createClass({
 		getInitialState: function(){
 			return {flag: true};
@@ -28,6 +55,7 @@ webpackJsonp([1],{
 						<TimeUp name="Nate" onClick={this.handleFrameClick.bind(this)}/>
 				</div>);
 		}
+		
 	});
 	console.log("frame", Frame);
 	*/
@@ -60,7 +88,20 @@ webpackJsonp([1],{
 				} else {
 					color = 'blue';
 				}
-				return React.createElement("div", { style: { backgroundColor: color } }, React.createElement(TimeUp, { name: "Nate", onClick: this.handleFrameClick.bind(this) }));
+				return React.createElement("div", { style: { backgroundColor: color } }, React.createElement(TimeUp, { name: "Nate", onClick: this.handleFrameClick.bind(this) }), React.createElement("div", { id: "qrcodeDefault", ref: "qrcodeDefault" }));
+			} });
+
+		Object.defineProperty(frame.prototype, "componentDidMount", { writable: true, configurable: true, value: function () {
+				"use strict";
+
+				var me = this;
+				seajs.use(['index', 'jquery'], function (qrcode, $) {
+					console.log(qrcode);
+					var qrnode = new qrcode({
+						text: ""
+					});
+					$(ReactDOM.findDOMNode(me.refs.qrcodeDefault)).append(qrnode);
+				});
 			} });
 
 		return frame;

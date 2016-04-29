@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Scroll</title>
+	<style>
+		
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://static.alipayobjects.com/seajs/seajs/2.2.0/sea.js"></script>
+    <script type="text/javascript">
+	$(function(){
+		//if (window.addEventListener){
+		 /** Mozilla的基于DOM的滚轮事件 **/
+		// window.addEventListener("DOMMouseScroll", wheel, false);
+		// }else{
+		 /** IE/Opera. */
+		 //window.onmousewheel = wheel;
+		 document.onmousewheel = wheel
+		 //window.onmousewheel = document.onmousewheel = wheel;
+		// }
+		if(window.addEventListener){
+			document.addEventListener("DOMMouseScroll", wheel, false);
+		}else{
+			document.onmousewheel = wheel;
+		}
+	});
+/*
+function handle(delta){
+ if (delta > 0){
+  if(Page > 1 && Page !== 1){
+   GotoPage(Page - 1);
+  }
+ }
+ else{
+  if(Page != Pages){
+   GotoPage(Page + 1);
+  }
+ }
+}
+*/
+	function wheel(event){
+		var delta = 0;
+		if (!event) /* For IE. */
+			event = window.event;
+		if (event.wheelDelta) { /* IE或者Opera. */
+			delta = event.wheelDelta / 120;
+			/** 在Opera9中，事件处理不同于IE
+			*/
+			if (window.opera)
+				delta = -delta;
+		}else if(event.detail){
+			//firefox
+			delta = event.detail / 120;
+		}
+		else if (event._zzjsnet) { /** 兼容Mozilla. */
+			/** In Mozilla, sign of delta is different than in IE.
+			* Also, delta is multiple of 3.
+			*/
+			delta = -event._zzjsnet / 3;
+		}
+		/** 如果 增量不等于0则触发
+		* 主要功能为测试滚轮向上滚或者是向下
+		*/
+		console.log('delta:' + delta);
+	}//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+	/** 初始化 */
+
+	</script>
+  </head>
+  <body>
+	<div id='div1' >div1</div>
+	<div id='div2' style="display:none">div2</div>
+	<div id='div3' style="display:none">div3</div>
+	<div id='div4' style="display:none">div4</div>
+	<div id='div5' style="display:none">div5</div>
+	<div id='div6' style="display:none">div6</div>
+		<!-- <div><div id="div" style="background-color:red;position:absolute;top:10px;width:1000px;height:800px;"></div></div> -->
+  </body>
+</html>

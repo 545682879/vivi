@@ -6,7 +6,11 @@ class Hello extends React.Component{
     }
 	
 	render() {
-		return(<h1>Hello {this.props.name}!</h1>)
+		return(<h1 ref="node">Hello {this.props.name}!</h1>)
+	}
+	componentDidMount(){
+		let me = this,
+			refs = me.refs;
 	}
 }
 

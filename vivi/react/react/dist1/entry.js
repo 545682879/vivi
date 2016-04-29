@@ -29,7 +29,13 @@ webpackJsonp([0],{
 	Object.defineProperty(Hello.prototype, "render", { writable: true, configurable: true, value: function () {
 			"use strict";
 
-			return React.createElement("h1", null, "Hello ", this.props.name, "!");
+			return React.createElement("h1", { ref: "node" }, "Hello ", this.props.name, "!");
+		} });
+	Object.defineProperty(Hello.prototype, "componentDidMount", { writable: true, configurable: true, value: function () {
+			"use strict";
+
+			let me = this,
+			    refs = me.refs;
 		} });
 
 	Hello.propTypes = {};

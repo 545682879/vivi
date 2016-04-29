@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>qrcode</title>
+	<style>
+	.all-widgets {
+	  height: 24px;
+	  line-height: 24px;
+	}
+	.all-widgets .item-widget {
+	  display: inline-block;
+	  margin-right: 10px;
+	  cursor: pointer;
+	}
+	.all-widgets .item-widget .icon {
+	  display: inline-block;
+	  width: 16px;
+	  height: 16px;
+	  background-color: transparent;
+	  background-repeat: no-repeat;
+	  margin-right: 0;
+	}
+	.all-widgets .item-widget .text {
+	  display: inline-block;
+	  color: #4a4a4a;
+	  height: 24px;
+	  line-height: 24px;
+	}
+	.all-widgets .item-widget.current {
+	  font-weight: bolder;
+	}
+	.all-widgets .share-area-widget .icon {
+	  background-image: url("https://aliwork.alicdn.com/tps/i3/TB1_UbTGXXXXXa3XVXXAz6UFXXX-16-16.png");
+	}
+	.all-widgets .task-area-widget .icon {
+	  background-image: url("https://aliwork.alicdn.com/tps/i1/TB1GlzVGXXXXXayXVXXAz6UFXXX-16-16.png");
+	}
+	.all-widgets .meeting-area-widget .icon {
+	  background-image: url("https://aliwork.alicdn.com/tps/i1/TB1p4.TGXXXXXXoXpXXAz6UFXXX-16-16.png");
+	}
+	.all-widgets .pool-area-widget .icon {
+	  background-image: url("https://aliwork.alicdn.com/tps/i3/TB1L3L4GXXXXXccXpXXAz6UFXXX-16-16.png");
+	}
+	</style>
+	<!-- <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>  -->
+	<script type="text/javascript" src="https://a.alipayobjects.com/??seajs/seajs/2.2.3/sea.js,seajs/seajs-style/1.0.2/seajs-style.js,seajs/seajs-log/1.0.0/seajs-log.js,seajs/seajs-combo/1.0.0/seajs-combo.js,gallery/json/1.0.3/json.js,es5-shim/4.0.5/es5-shim.js,es5-shim/4.0.5/es5-sham.js,html5shiv/3.7.2/src/html5shiv.js"></script>
+    <script src="https://alinw.alipayobjects.com/jquery/jquery/1.8.0/jquery.js"></script>
+	<script src="http://alinw.alicdn.com/alinw/message-publisher/0.4.15/message-publisher.js"></script>
+	
+	<script type="text/javascript">
+	/*seajs.config({
+		base: 'http://alinw.alicdn.com/alinw',
+      paths : {
+        'path':'https://alinw.alipayobjects.com/jquery/',
+        'gallery' : 'https://alinw.alipayobjects.com/gallery',
+        'arale'   : 'https://alinw.alipayobjects.com/arale',
+        'alipay'  : 'https://alinw.alipayobjects.com/alipay',
+        'seajs'  : 'https://alinw.alipayobjects.com/seajs',
+      },
+      alias: {
+        'jQuery': 'path/jquery/1.7.2/jquery',
+        '$': 'path/jquery/1.7.2/jquery',
+		'jquery': 'path/jquery/1.7.2/jquery' ,
+        "message-publisher": "message-publisher/0.4.15/message-publisher"
+      }
+	});
+	
+	seajs.use(['message-publisher','jQuery'], function(MessagePublisher,$){
+		console.log(MessagePublisher);
+		console.log($)
+		
+		  $(".share-area-widget:first").on("click", function() {
+            var share = new MessagePublisher.Share({
+                trigger: $(".share-area-widget:first"),
+                element: $(".new-container:first"),
+                defaultPostData: {
+                    event: 10
+                }
+            });
+            share.render();
+        });
+		
+	});*/
+	
+	console.log(BaseWidget);
+	</script>
+  </head>
+  <body>
+	<link rel="stylesheet" type="text/css" href="http://g.assets.daily.taobao.net/??platform/common/s/1.1/global/global.css,alinw/kuma/2.1.1/kuma.css" />
+	<div style="margin-top: 40px;"></div>
+
+
+
+	<div style="width: 600px;border: 1px dotted #a3a3a3;margin: 0 auto;padding:10px;">
+		<div class="image-icon">
+			<div class="all-widgets">
+
+				<span class="item-widget share-area-widget current">
+					<span class="icon"></span>
+					<span class="text">分享</span>
+				</span>
+
+
+				<span class="item-widget task-area-widget">
+					<span class="icon"></span>
+					<span class="text">任务</span>
+				</span>
+
+
+				<span class="item-widget meeting-area-widget">
+					<span class="icon"></span>
+					<span class="text">约会</span>
+				</span>
+
+
+				<span class="item-widget pool-area-widget">
+					<span class="icon"></span>
+					<span class="text">投票</span>
+				</span>
+
+		</div>
+		</div>
+
+		<div class="new-container" style=""></div>
+	</div>
+
+	<div style="height: 200px;border: 1px solid #a3a3a3;margin-top: 20px;">
+	xxx
+	</div>
+  </body>
+</html>
