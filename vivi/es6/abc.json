@@ -1,0 +1,49 @@
+{"a":"a", "b":"b", "c":"c"}
+
+http://abc.daily.taobao.net:8080/
+
+http://login.daily.taobao.net/member/login.jhtml?redirectURL=http%3A%2F%2Fabc.daily.taobao.net%3A8080%2Fmanage%2FappList
+
+http://demo.alibaba-inc.com/system/ids_extracted/4c/1d/fb/73/a9e98ce3f53d71592d082bd3/index.html
+
+
+			<div class="container base-infor">
+				<form class="form-horizontal">
+					<input type="hidden" name="appId" value="$!appId">
+				    <div class="form-group">
+				    	<label for="BundleID" class="col-sm-1 control-label">应用名称</label>
+				    	<div class="col-sm-5">
+				    		<p class="form-control-static">$!appInfoDo.name</p>
+				    	</div>
+				    </div>
+				    <div class="form-group">
+				    	<label for="BundleID" class="col-sm-1 control-label">AppKey</label>
+				    	<div class="col-sm-5">
+				    		<p class="form-control-static">$!appInfoDo.appKey</p>
+				    	</div>
+				    </div>	
+				    <div class="form-group">
+				    	<label for="BundleID" class="col-sm-1 control-label">AppSecret</label>
+				    	<div class="col-sm-5">
+				    		<p class="form-control-static">$!appInfoDo.appSecret</p>
+				    	</div>
+				    </div>
+				    <div class="form-group">
+				    	<label for="BundleID" class="col-sm-1 control-label">应用描述</label>
+				    	<div class="col-sm-5">
+				    		<p class="form-control-static">
+				    			#noescape()$!appInfoDo.description.replaceAll("<", "&lt").replaceAll(">", "&gt").replaceAll("\n", "<br>")#end</p>
+				    	</div>
+				    </div>				    
+				</form>					
+			</div>
+			
+			font-family:MicrosoftYaHei;
+font-size:14px;
+color:#ff3d0d;
+text-align:left;
+
+select * from app_service_instance where app_id =3 and available ='T'
+select *from app_service_instance_property  where app_service_instance_id in(1,23)
+
+
