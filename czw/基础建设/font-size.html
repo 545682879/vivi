@@ -8,6 +8,10 @@
 	</style>
 	<!-- <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> -->
     <script type="text/javascript">
+		var json = {a:"小屁孩"};
+		var value = JSON.stringify(json, function(val){
+			alert(val);
+		});
 	</script>
   </head>
   <body>

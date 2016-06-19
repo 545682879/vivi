@@ -1,0 +1,17 @@
+var documentMode = document.documentMode;
+if( documentMode && (documentMode === 8 || documentMode === 9) ){
+    $('body').delegate('textarea[maxlength]', 'keydown paste', function(e){
+        console.log(e);
+        setTimeout(function(){
+            var target = $(e.target),
+                maxlength = target.attr('maxlength');
+            if(target.val().length > maxlength){
+                var target = $(e.target);
+                var maxlength = target.attr('maxlength');
+                if(target.val().length >= maxlength){
+                    target.val(target.val().slice(0, maxlength));
+                }  
+            }
+        }, 0);
+    });
+}
