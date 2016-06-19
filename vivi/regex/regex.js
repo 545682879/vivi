@@ -163,3 +163,26 @@ function insertName1(str, name){
 	});
 	return str.slice(tempPrefix.length);
 }
+
+//标示／g 的一些问题
+// 带有g的正则表达式不能内联
+// 无限循环 while(/a/g.test('babaa')) count++;
+
+var regex11 = /a/g;
+while(regex11.test('babaa')) count++;
+
+// 带有／g的正则表达式作为参数 ，设置lastIndex 为0， 这种正则表达式不能同时用于多个迭代。
+var REGEXP = /"(.*?)"/g;
+function extractQuated(str){
+	var match;
+	var result = [];
+	REGEXP.lastIndex = 0;
+	while((match = REGEXP.exec(str)) != null){
+		result.push(match[1]);
+	}
+	return result;
+}
+
+console.log(extractQuated('"hello", "world"'))
+
+
