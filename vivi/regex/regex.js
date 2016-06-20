@@ -185,4 +185,6 @@ function extractQuated(str){
 
 console.log(extractQuated('"hello", "world"'))
 
-
+"aaab".search("^a+b+$")  //0
+"laaab".search("^a+b+$")  //-1
+"laaab".search("a+b+$")  //1
