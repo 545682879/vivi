@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>标签</title>
+	<style>
+   *{padding: 0;margin: 0;}
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        //setPosition($('#div0'))
+        setPosition($('#div1'))
+        setPosition($('#div2'))
+        setPosition($('#div3'))
+
+        $("#div").on('scroll',function(e){
+          $('#message').html(getPosition($('#div')))
+          setPosition($('#div1'))
+          $('#div2').html(getPosition($('#div2')))
+          setPosition($('#div3'))
+        });
+
+        $("#div2").on('scroll',function(e){
+          $('#div2').html(getPosition($('#div2')))
+        });
+
+        $(document).on('scroll',function(e){
+          console.log(e)
+          var p = [];
+          p.push('document body:' + '<br>');
+          p.push('clientHeight: ' + document.body.clientHeight + '<br>');
+          p.push('clientLeft: '+ document.body.clientLeft + '<br>');
+          p.push('clientTop: ' + document.body.clientTop + '<br>');
+          p.push('clientWidth: ' + document.body.clientWidth + '<br>');
+
+          p.push('scrollHeight: ' + document.body.scrollHeight + '<br>');
+          p.push('scrollLeft: '+ document.body.scrollLeft + '<br>');
+          p.push('scrollTop: ' + document.body.scrollTop + '<br>');
+          p.push('scrollWidth: ' + document.body.scrollWidth+ '<br>');    
+
+          p.push('offsetHeight: ' + document.body.offsetHeight + '<br>');
+          p.push('offsetLeft: '+ document.body.offsetLeft + '<br>');
+          p.push('offsetTop: ' + document.body.offsetTop + '<br>');
+          p.push('offsetWidth: ' +  document.body.offsetWidth + '<br>');
+
+          p.push('clientX: '+ e.originalEvent.clientX + '\n');
+          p.push('clientY: ' + e.originalEvent.clientY + '\n');
+          p.push('offsetX: '+ e.originalEvent.offsetX + '\n');
+          p.push('clientY: ' + e.originalEvent.clientY + '\n');
+          p.push('pageX: '+ e.pageX + '\n');
+          p.push('pageY: ' + e.pageY + '\n');
+
+          p.push('document.documentElement.scrollTop: ' + document.documentElement.scrollTop + '\n');
+          p.push('document.documentElement.scrollHeight: ' + document.documentElement.scrollHeight + '\n');
+
+          p.push('window:' + '<br>');
+          p.push('scrollX: ' + window.scrollX + '\n');
+          p.push('scrollY: '+ window.scrollY + '\n');
+          p.push('screenX: ' + window.screenX + '\n');
+          p.push('screenY: '+ window.screenY + '\n');
+          p.push('screenTop: ' + window.screenTop + '\n');
+          p.push('screenLeft: '+ window.screenLeft + '\n');
+          p.push('window.screen.height: ' + window.screen.height + '\n');
+          p.push('window.screen.width: ' +  window.screen.width + '\n');
+          p.push('window.screen.availHeight: ' +  window.screen.availHeight + '\n');
+          $('#infor').html(p.join(''))
+          setPosition($('#footer'))
+          setPosition($('#div3'))
+
+          //var scrollTop = window.pageYOffset|| document.documentElement.scrollTop || document.body.scrollTop;
+        });
+      });
+
+      function setPosition(item){
+
+        item.html(getPosition(item))
+      }
+
+      function getPosition(item){
+        var div1 = [];
+        div1.push('top: ' + item.position().top + '<br>');
+        div1.push('left: ' + item.position().left + '<br>');
+        div1.push('offset top: ' + item.offset().top + '<br>');
+        div1.push('offset left: ' + item.offset().left + '<br>');
+        div1.push('clientHeight: ' + item.prop('clientHeight') + '<br>');
+        div1.push('clientLeft: '+ item.prop('clientLeft') + '<br>');
+        div1.push('clientTop: ' + item.prop('clientTop') + '<br>');
+        div1.push('clientWidth: ' + item.prop('clientWidth') + '<br>');
+
+        div1.push('scrollHeight: ' + item.prop('scrollHeight') + '<br>');
+        div1.push('scrollLeft: '+ item.prop('scrollLeft') + '<br>');
+        div1.push('scrollTop: ' + item.prop('scrollTop') + '<br>');
+        div1.push('scrollWidth: ' + item.prop('scrollWidth') + '<br>');    
+
+        div1.push('offsetHeight: ' + item.prop('offsetHeight') + '<br>');
+        div1.push('offsetLeft: '+ item.prop('offsetLeft') + '<br>');
+        div1.push('offsetTop: ' + item.prop('offsetTop') + '<br>');
+        div1.push('offsetWidth: ' + item.prop('offsetWidth') + '<br>');
+        div1.push('offsetParent: ' + item.prop('offsetParent').nodeName + '\n');
+
+        return div1.join('');
+      }
+	  </script>
+  </head>
+  <body>
+    <div id="message"></div>
+    <div id="div" style="width:800px;height:400px;background-color:#864f24;overflow:auto;">
+      <div id="div0" ></div>
+      <div id="div1" style="width:150px;height:300px;padding-top:10px;margin-left:80px;float:left;background-color:#432ded"></div>
+      <div id="div2" style="width:150px;height:100px;margin-top:10px;margin-left:30px;float:left;background-color:#dedf43;overflow:auto;top:30px;left:100px;"></div>
+      <div id="div3" style="width:600px;height:300px;margin-top:10px;float:left;background-color:#434354"></div>
+    </div>
+    <div id="infor" style="width:300px;height:500px;right:10px;top:10px;background-color:#3e45ab;position:fixed"></div>
+    <div id="footer" style="width:600px;height:600px;margin-top:10px;background-color:#4e33f4">
+
+    </div>
+  </body>
+</html>
