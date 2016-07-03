@@ -151,7 +151,8 @@
 			'widget': 'arale-widget/1.2.0/widget',
 			'dialog':'alinw/dialog/2.0.6/dialog',
 			'confirmbox':'alinw/dialog/2.0.6/confirmbox',
-			'select':'alinw/select/2.0.7/select'
+			'select':'alinw/select/2.0.7/select',
+			'handlebars': "alinw/handlebars/1.3.0/handlebars",
 		}
 	});
 	
@@ -160,14 +161,16 @@
 		var scro = new Scroller({
 			trigger: $('.content')
 		});
-		
+		//new MyWidget().render();
 		//添加校验
 		$(function(){
 			Widget.autoRenderAll();
+			/*
 			var validator = new Validator({
 				element: '[name="form"]',
 				failSilently: true
 			});
+			*/
 		});
 		
 		var dialog = new Dialog({
@@ -215,6 +218,7 @@
 	</script>
   </head>
   <body>
+
 <div class="main    fn-clear">
 <div class="top">
 	<ul class="menu"> 
@@ -238,7 +242,7 @@
 </div>
 <div class="theRight">
 
-	
+	<div id="abc"><div data-widget="./myWidget" data-data='{"data1": "data11", "data2": "data22", "data3": "data33"}'></div></div>
 	<form name="form"  data-widget="validator">
 	<table class="controls">
 		<tr>
