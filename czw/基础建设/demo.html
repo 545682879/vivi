@@ -6,11 +6,25 @@
     <title>标签</title>
 	<style>
 	</style>
-	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<!-- <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> -->
+	<script   src="https://code.jquery.com/jquery-1.4.4.min.js"   integrity="sha256-UXNk8tRRYvtQN0N7W2y5U9ANmys7ebqH2f5X6m7mBww="   crossorigin="anonymous"></script>
     <script type="text/javascript">
+	$(function(){
+	console.log(1)
+		$.fn.extend({
+		  check: function() {
+			return this.each(function() { this.checked = true; });
+		  },
+		  uncheck: function() {
+			return this.each(function() { this.checked = false; });
+		  }
+		});
+		$('[id="circle"]').check();
+	});
 	</script>
   </head>
   <body>
-  
+	<input type="checkbox" class="kuma-checkbox" name="checkbox" required data-errormessage-required="请选择方圆。" id="square" ><label width="100px" for="square">方</label></input>
+	<input type="checkbox" class="kuma-checkbox" name="checkbox" id="circle" ><label width="100px" for="circle">圆</label></input>
   </body>
 </html>

@@ -34,8 +34,12 @@ git checkout master
 git pull
 git branch new_branch
 git checkout  new_branch
+
  |
  |
  |
-\/
+\ /
+
 git checkout -b new_branch
+
+git rm -r <file>

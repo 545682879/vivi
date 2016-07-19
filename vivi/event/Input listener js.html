@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="auther" content="fq" />
+<title>监听输入框值的即时变化 onpropertychange  oninput</title>
+ <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+<table> 
+	<tr> 
+		<td>此处值通过js设置：</td> 
+		<td><input id="jsUserName" type="text" name="jsUserName" readonly/></td>
+	</tr> 
+	<tr> 
+		<td>此处输入值：</td> 
+		<td><input id="userName" type="text" name="userName"/></td> 
+	</tr> 
+</table> 
+<script type="text/javascript">
+$(function()  
+        {  
+            var jsUserName = "";  
+            if(navigator.userAgent.indexOf("MSIE") > -1 && navigator.userAgent.indexOf("Opera")<0)  // IE浏览器  
+            {  
+                $("#userName").get(0).onpropertychange = setJsUserName;  
+                $("#jsUserName").get(0).onpropertychange = handle;  
+            }  
+            else    // 其他浏览器  
+            {  
+                var intervalName;   // 定时器句柄  
+                $("#userName").get(0).addEventListener("input",setJsUserName,false);  
+                  
+                // 获得焦点时，启动定时器  
+                $("#userName").focus(function(){  
+                    intervalName = setInterval(handle,1000);  
+                });  
+                // 失去焦点时，清除定时器  
+                $("#userName").blur(function()  
+                {  
+                    clearInterval(intervalName);  
+                });  
+            }  
+              
+            // 设置jsUserName input的值  
+            function setJsUserName()  
+            {  
+                $("#jsUserName").val($(this).val());  
+            }  
+              
+            // jsUserName input的值改变时执行的函数  
+            function handle()  
+            {     
+                // IE浏览器此处判断没什么意义，但为了统一，且提取公共代码而这样处理。  
+                if($("#jsUserName").val() != jsUserName)  
+                {  
+                    $("#toolTip").remove();  
+                    $("#jsUserName").parent().append("<span id='toolTip'>看到这里的信息表明，通过js改变input的值也能响应相应事件：<span  style='color:red;' mce_style='color:red;'>" + $("#jsUserName").val() + "</span></span>");  
+                    jsUserName = $("#jsUserName").val();  
+                }  
+            }  
+        }); 
+</script>
+</body>
+</html>
