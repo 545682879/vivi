@@ -1,0 +1,84 @@
+div,html,body,section{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+body{
+  font-family: "微软雅黑";
+}
+@sf-grid-columns:5;
+@grid-gutter:30px;
+@sm-width:768px;
+@md-width:992px;
+@lg-width:1200px;
+@min-height:1px;
+@gutter:@grid-gutter/2;
+@xs:xs;
+@sm:sm;
+@md:md;
+@lg:lg;
+.container{
+  padding-left:@gutter;
+  padding-right:@gutter;
+  margin:auto;
+}
+.container-fluid{
+  padding-left:@gutter;
+  padding-right:@gutter;
+  margin:auto;
+}
+.sf-row{
+  margin-left:-@gutter;
+  margin-right:-@gutter;
+}
+.sf-row:after{
+  content:" ";
+  display: table;
+  clear:both;
+}
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  position: relative;
+  min-height: @min-height;
+  padding-right: @gutter;
+  padding-left: @gutter;
+}
+//col-xx-x定义实例化方法
+.make-col(@view;@column) when (@column<=@sf-grid-columns){
+  .col-@{view}-@{column}{
+    float:left;
+    width:percentage(@column/@sf-grid-columns);
+  }
+  .col-@{view}-pull-@{column}{
+    right:percentage(@column/@sf-grid-columns);
+  }
+  .col-@{view}-push-@{column}{
+    left:percentage(@column/@sf-grid-columns);
+  }
+  .col-@{view}-offset-@{column}{
+    margin-left:percentage(@column/@sf-grid-columns);
+  }
+  .make-col(@view;(@column+1));
+}
+//小屏幕、手机col-xs-x实例化
+.make-col(@xs;0);
+//平板col-sm-x实例化
+@media (min-width: @sm-width){
+  .container{
+    width:750px;
+  }
+  .make-col(@sm;0);
+}
+//电脑pc端col-md-x实例化
+@media (min-width: @md-width){
+  .container{
+    width:970px;
+  }
+  .make-col(@md;0);
+}
+//大屏col-lg-x实例化
+@media (min-width: @lg-width){
+  .container{
+    width:1170px;
+  }
+  .make-col(@lg;0);
+}
