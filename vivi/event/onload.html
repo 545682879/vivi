@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="auther" content="fq" />
+<title>监听输入框值的即时变化 onpropertychange  oninput</title>
+ <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+<table> 
+	<tr> 
+		<td>此处值通过js设置：</td> 
+		<td><input id="jsUserName" type="text" name="jsUserName" readonly/></td>
+	</tr> 
+	<tr> 
+		<td>此处输入值：</td> 
+		<td><input id="userName" type="text" name="userName"/></td> 
+	</tr> 
+	<tr> 
+		<td>&nbsp;</td> 
+		<td><img src='../css/image/Chrysanthemum.jpg'></img></td> 
+	</tr> 
+</table> 
+<script type="text/javascript">
+/*
+var whenReady = (function() {               
+//这个函数返回whenReady()函数
+    var funcs = [];             
+//当获得事件时，要运行的函数
+    var ready = false;          
+//当触发事件处理程序时,切换为true
+ 
+    
+//当文档就绪时,调用事件处理程序
+    function handler(e) {
+		console.log('type:' , e.type , e)
+        if(ready) return;       
+//确保事件处理程序只完整运行一次
+		console.log('not ready.');
+        
+//如果发生onreadystatechange事件，但其状态不是complete的话,那么文档尚未准备好
+        if(e.type === 'onreadystatechange' && document.readyState !== 'complete') {
+            return;
+        }
+ 
+        
+//运行所有注册函数
+        
+//注意每次都要计算funcs.length
+        
+//以防这些函数的调用可能会导致注册更多的函数
+        for(var i=0; i<funcs.length; i++) {
+            funcs[i].call(document);
+        }
+        
+//事件处理函数完整执行,切换ready状态, 并移除所有函数
+        ready = true;
+        funcs = null;
+    }
+    
+//为接收到的任何事件注册处理程序
+    if(document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', handler, false);
+        document.addEventListener('readystatechange', handler, false);            
+//IE9+
+        window.addEventListener('load', handler, false);
+    }else if(document.attachEvent) {
+        document.attachEvent('onreadystatechange', handler);
+        window.attachEvent('onload', handler);
+    }
+    
+//返回whenReady()函数
+    return function whenReady(fn) {
+        if(ready) { fn.call(document); }
+        else { funcs.push(fn); }
+    }
+})();
+
+whenReady(function(){
+	console.log('document onload!');
+})
+*/
+function ready(fn){
+    if(document.addEventListener) {        
+//标准浏览器
+        document.addEventListener('DOMContentLoaded', function(e) {
+            
+//注销事件, 避免反复触发
+            document.removeEventListener('DOMContentLoaded',arguments.callee, false);
+            fn(e);            
+//执行函数
+        }, false);
+    }else if(document.attachEvent) {        
+//IE
+        document.attachEvent('onreadystatechange', function(e) {
+            if(document.readyState == 'complete') {
+                document.detachEvent('onreadystatechange', arguments.callee);
+                fn(e);        
+//函数执行
+            }
+        });
+    }
+};
+
+ready(function(e){
+	console.log('document onload!', e);
+})
+
+</script>
+</body>
+</html>
