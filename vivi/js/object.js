@@ -71,14 +71,15 @@ print.call(b);
 var a = [10, 2, 4, 15, 9];
 Math.max.apply(null, a)
 
-var o = new Object();
+var oo = new Object();
 
-o.f = function (){
-    console.log(this === o);
+oo.f = function (){
+    console.log(this === oo);
 }
-
+	console.log(oo.f)
 var f = function (){
-  o.f.apply(o);
+	console.log(oo)
+	oo.f.apply(oo);
   //如果不使用这个，则click事件的处理方法里, this 是事件源
   // 或者 o.f.call(o);
 };
@@ -133,3 +134,93 @@ var o = { v: 123 };
 var bind = Function.prototype.call.bind(Function.prototype.bind);
 
 bind(f,o)() // 123
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
+//函数的继承
+function Person(name, sex) {
+    this.name = name;
+    this.sex = sex;
+}
+Person.prototype.age = 20;
+Person.prototype.nation = 'China';
+
+var zhang = new Person("ZhangSan", "man");
+console.log('zhang init:', zhang.age, zhang.nation); // 20
+
+var li = new Person("Lisi", "man");
+console.log('li init:', li.age, li.nation); // 20
+// 覆盖prototype中的age属性
+
+zhang.age = 19;
+zhang.nation = 'American';
+console.log('zhang 19:', zhang.age, zhang.nation); // 19
+//delete zhang.age;
+// 在删除实例属性age后，此属性值又从prototype中获取
+
+Person.prototype.age = 22;
+console.log('zhang 22:', zhang.age, zhang.nation); 
+console.log('li 22:', li.age, li.nation); 
+
+delete zhang.age;
+console.log('zhang delete 19:', zhang.age, zhang.nation); // 19
+
+console.log("Person.prototype:", Person.prototype);
+
+function Teacher(name, sex, category){
+	Person.call(this, name, sex);
+	this.category = category;
+}
+
+Teacher.prototype = Object.create(Person.prototype);
+Teacher.prototype.constructor = Teacher;
+
+//Teacher.prototype = new Person('li', 'woman');
+
+//缺点是 Cat.prototype和Animal.prototype现在指向了同一个对象，那么任何对Cat.prototype的修改，都会反映到Animal.prototype
+//Teacher.prototype = Person.prototype;
+//Person 的protptype也会改变
+//Teacher.prototype.constructor = Teacher;
+
+var teacher1 = new Teacher('a', 'man', 'Chinese');
+
+console.log('Teacher Name: ', teacher1.name);
+console.log('Teacher Sex: ', teacher1.sex);
+console.log('Teacher Category: ', teacher1.category);
+
+//Teacher.prototype = new Person();
+console.log('teacher1.__proto__: ' , teacher1.__proto__);  //Person 
+console.log('Teacher.prototype: ' , Teacher.prototype);  //teacher1.__proto__ == Teacher.prototype
+console.log('teacher1.constructor: ' , teacher1.constructor);
+console.log('Teacher.prototype.constructor: ',  Teacher.prototype.constructor);  //teacher1.constructor == Teacher.prototype.constructor
+
+console.log('teacher1.age', teacher1.age);
+Teacher.prototype.age = 100;
+console.log('teacher1.age', teacher1.age); //Person 
+
+Teacher.prototype.schoolName = '中华';
+Teacher.prototype.getSchoolName = function(){return this.schoolName;};  //Person
+
+console.log('teacher1.schoolName', teacher1.schoolName);
+
+console.log(teacher1.getSchoolName());
+
+function deepCopy(p, c) {
+　　var c = c || {};
+　　for (var i in p) {
+		console.log(i)
+		if(p.hasOwnProperty(i)){
+			if (typeof p[i] === 'object') {
+	　　　　　　c[i] = (p[i].constructor === Array) ? [] : {};
+	　　　　　　deepCopy(p[i], c[i]);
+	　　　　} else {
+	　　　　　　c[i] = p[i];
+	　　　　}
+		}
+
+　　}
+	return c;
+}
+
+var Doctor = deepCopy(new Person());
+
+console.log(Doctor);
