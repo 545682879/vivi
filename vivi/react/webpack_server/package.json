@@ -1,0 +1,55 @@
+{
+  "name": "react-webpack",
+  "version": "1.0.0",
+  "description": "webpack demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot --progress --colors --port 8888",
+    "build": "webpack --progress --colors --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": ".."
+  },
+  "keywords": [
+    "react",
+    "webpack"
+  ],
+  "author": "yixuan",
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.2",
+    "babel-plugin-react-transform": "^2.0.0",
+    "clean-webpack-plugin": "^0.1.10",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "handlebars": "^4.0.5",
+    "handlebars-loader": "^1.4.0",
+    "json-loader": "^0.5.4",
+    "less": "^2.6.0",
+    "less-loader": "^2.2.2",
+    "postcss-loader": "^0.11.0",
+    "react-bootstrap": "^0.30.3",
+    "react-hot-loader": "^1.3.0",
+    "react-transform-hmr": "^1.0.2",
+    "reflux": "^0.4.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.11",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "graceful": "~1.0.0",
+    "html-webpack-plugin": "^2.8.2",
+    "lodash": "~3.10.1",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-kendo": "~0.13.11",
+    "react-router": "^2.0.0",
+    "recluster": "~0.3.7"
+  }
+}

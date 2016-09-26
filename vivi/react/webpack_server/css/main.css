@@ -1,0 +1,21 @@
+.homelink,.hellolink,.formlink,.buttonlink,.timerlink{
+  margin: 10px;
+}
+.formwrapper{
+  width: 300px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.timer{
+  height: 40px;
+  width: 400px;
+  line-height: 40px;
+  margin-top: 50px;
+  border:1px solid #b8b8b8;
+}
+.penguins{
+	width:100px;
+	height:100px;
+	background: url("./Penguins.jpg") no-repeat -100px -100px;
+}
+
