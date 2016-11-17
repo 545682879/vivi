@@ -1,0 +1,89 @@
+function A(name){this.name = name;}
+
+A.prototype.getName = function getName(){return this.name;}
+
+var a = new A('I am A')
+
+a
+A {name: "I am A"}
+
+getName(){return this.name;}
+
+a.getName()
+
+"I am A"
+
+---------------------------------------------------------------------------------------------------------------
+function B(name, age){A.call(this, name), this.age = age}
+
+B.prototype = Object.create(A.prototype)
+
+B.prototype.constructor = B
+
+B(name, age){A.call(this, name), this.age = age}
+
+var b =  new B('I am B', 13)
+
+b.getName()
+"I am B"
+
+B.prototype.getName = function getName(){return "B :"+ this.name;}
+
+b.getName()
+"B :I am B"
+a.getName();
+"I am A"
+
+---------------------------------------------------------------------------------------------------------------
+function C(name, age){A.call(this, name), this.age = age}
+
+var c = new C('I am C', 25)
+
+C.prototype = Object.create(A.prototype)
+
+var c = new C('I am C', 25)
+
+c.getName()
+"I am C"
+
+C.prototype.getName = function getName(){return "C :"+ this.name};
+
+c.getName()
+"C :I am C"
+a.getName()
+"I am A"
+
+------------------------------------------------------------------------------------------
+function D(name, age){A.call(this, name), this.age = age}
+
+//不能这样设置protytpe
+D.prototype = A.prototype
+
+var d = new D('I am D', 90)
+
+d.getName()
+"I am D"
+
+
+d.getName()
+"D:I am D"
+a.getName()
+"D:I am A"
+A.prototype.getName = function getName(){return this.name;}
+
+a.getName()
+"I am A"
+b.getName()
+"B :I am B"
+c.getName()
+"C :I am C"
+d.getName()
+"I am D"
+D.prototype.constructor = D
+
+D.prototype.getName = function(){return "D:" + this.name}
+(){return "D:" + this.name}
+d.getName()
+"D:I am D"
+a.getName()
+"D:I am A"

@@ -1,0 +1,25 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Promise</title>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!--<script src="node_modules/babel-core/browser.js"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+	<div id="example"></div>
+	<script type="text/javascript">
+		console.log('javascript');
+	</script>
+	<script type="text/babel">
+		console.log('babel');
+		var input = [1, 2, 3];
+		var output = input.map(item => item + 1);
+		console.log(output);
+	</script>
+  </body>
+</html>

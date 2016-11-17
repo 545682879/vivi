@@ -7,11 +7,13 @@ deploy/framework/tools/tomcat/conf/server.xml
 取消url中的lasesen路径
 
 mvn clean install -Dmaven.test.skip=true
+mvn install:install-file -DgroupId=com.alibaba.citrus.tool -DartifactId=maven-autoconfig-plugin -Dversion=1.2 -Dpackaging=jar -Dfile=ojdbc14.jar
 
 D:\alibaba\lassen\deploy\target\web-deploy\bin\catalina.bat
 D:\alibaba\lassen\deploy\framework\tools\tomcat\bin\catalina.bat
- -Dhsf.server.ip=100.81.98.214
+ -Dhsf.server.ip=30.10.0.48
 
+ -Dhsf.server.ip=30.10.2.228
 
 23200465
 
@@ -62,7 +64,9 @@ filingTime
 审判庭 13811093536
 立案庭  15088888889
 解决待判决案件13811093536
+admin: 13600517630
 230128198206118639
+18620000007
 
 http://localhost/suit/quickCase/quickAllCase.htm
 
@@ -70,6 +74,9 @@ http://localhost/account/myMediatorSuit.htm
 
 系统管理:http://lassen.alitest.com/manager/index.htm
 http://lassen.alitest.com/manager/mediator/mediator.htm
+
+
+被告送达确认：http://localhost:8080/suit/filing/accusedReceiveConfirm.htm?securityCaseId=eFCwuhBwZ-Vu2X_-JpKqWg
 
 13520361428 系统管理员 a111111
 10000000001 运维人员 a111111
@@ -283,4 +290,109 @@ input:disabled.fn-input-text-date, input[disabled].fn-input-text-date{background
 git branch --set-upstream-to=origin daily/1.0.44
 
 查询调解员账号：
+
 select * from lassen_account, lava_role_org_user, lava_role where lassen_account.id = lava_role_org_user.user_id and lava_role_org_user.role_id = lava_role.id and lava_role.role_type = 'mediator'
+select * from lassen_suit_withdrawal where case_id = 99405981
+select * from lassen_legal_case where id = '48'
+select * from lassen_legal_case where  case_number = 66
+select * from lassen_court where id = '1'
+
+mvn clean install -Dmaven.test.skip=true
+
+mvn install:install-file -DgroupId=com.alibaba.citrus.tool -DartifactId=maven-autoconfig-plugin -Dversion=1.2 -Dpackaging=jar -Dfile=ojdbc14.jar
+
+开发环境，代理人项目专用测试账号
+代理人
+普通用户(自然人) 过晓波 10990000000
+普通用户(自然人) 汪磊 10990000001
+普通用户(自然人) 袁勇 10990000002
+普通用户(自然人) 卢娇 10990000005
+普通用户(自然人) 陈志文 10990000006
+普通用户(自然人) 汪鹏鸿 10990000007
+普通用户(法人) 杭州码农有限公司    10990000003
+普通用户(法人) 杭州撸代码有限公司  10990000004
+18600000003 
+立案法官 10991000000
+审判法官 10992000000
+书记员    10993000000
+运维人员 10994000000
+
+11111111111 法院后台管理
+17717717717 系统管理员 
+
+//代理人服务
+测试环境 代理人功能测试
+代理人专用纠纷
+普通用户(自然人) 过晓波 10880000000
+普通用户(自然人) 汪磊 10880000001
+普通用户(自然人) 袁勇 10880000002
+普通用户(自然人) 卢娇 10880000005
+普通用户(自然人) 陈志文 10880000006
+普通用户(自然人) 汪鹏鸿 10880000007
+普通用户(自然人) 丁剑 10880000008
+普通用户(自然人) 徐志琳 10880000009
+普通用户(法人) 杭州码农有限公司    10880000003
+普通用户(法人) 杭州撸代码有限公司  10880000004
+
+代理人专用法院
+立案法官 10881000000
+审判法官 10882000000
+书记员    10883000000
+运维人员 10884000000
+
+17777777777 法院后台管理
+13520361428  系统管理员
+
+#set($frontDoList = ["a","b","c"])
+#foreach ($frontDo in $!frontDoList)
+	#if($securityIds)
+		#set($securityIds = "$!{securityIds},$!{frontDo}")
+	#else
+		#set($securityIds = "$!{frontDo}")
+	#end
+#end
+$securityIds
+
+
+http://localhost:8080/hephaistos/index.htm
+
+select * from lava_permission where res_name like 'paymentPayment'
+
+update lava_permission set  res_value = '/paymentorder/court/divisionCase/paymentOrderSend.htm' where res_name = 'paymentPayment'
+
+https://lassen.alibaba.net/portal/main/domain/index.htm
+
+
+select * from ceres_message_template where content_type = 'debtee_inform_make_doc' 
+
+select * from lava_role_permission 
+
+select* from lava_permission 
+
+select * from lava_role
+
+select * from lava_role_org_user 
+
+select * from lassen_account
+
+select * from lassen_account, lava_role_org_user, lava_role where lassen_account.id = lava_role_org_user.user_id and lava_role_org_user.role_id = lava_role.id and lava_role.role_type = 'filing_court' and  lassen_account.status = 'certification'
+
+select * from lassen_suit_withdrawal where case_id = 99405981
+
+select * from lassen_legal_case where id = '48'
+
+select * from lassen_legal_case where  case_number = 66
+
+select * from lassen_court where id = '1'
+
+西湖区人民法院：
+http://localhost:8080/login/mock.json?openaccountId=18620000007
+
+http://localhost:8080/login/mock.json?openaccountId=15020080808
+
+https://lassen.alibaba.net/login/mock.json?openaccountId=10880000005
+
+http://localhost:8080/login/mock.json?openaccountId=12300000000
+
+https://login-openaccount.daily.taobao.net/login/logout.htm?appKey=4272&redirectUrl=https://sven.alibaba.net/portal/main/domain/index.htm 
+本地开发环境登录失败的时候，访问以下上面的链接，后面的redirectUrl替换成本地url，即可登录成功@all 

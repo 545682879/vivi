@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by anonymous (http://jsbin.com/yakaqeneho/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+*{
+  box-sizing: border-box;
+}
+
+
+</style>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.1/react-with-addons.js"></script>
+<script src="https://cdn.jsdelivr.net/refluxjs/0.2.11/reflux.min.js"></script>
+<script id="jsbin-javascript">
+//var TodoAction = Reflux.createAction();
+var TodoAction = Reflux.createAction({asyncResult: true});
+
+//给所有的 action添加公共方法
+Reflux.ActionMethods.globalMethod = function(param){
+  console.log("action global method", param);
+}
+
+//给所有的 Store添加公共方法
+Reflux.StoreMethods.globalMethod = function(param){
+  console.log("store global method", param);
+}
+
+var Mixins = {
+  globalMethod: function(data){
+    console.log(data);
+  }
+};
+
+var TodoActions = Reflux.createActions(['getAll', 'removeAll']);
+var TodoActionsChild = Reflux.createActions({addItem: 
+            {asyncResult: true,
+             children: ['childrenTest'],
+             preEmit: function(param){
+               console.log('preEmit',param);
+               return Object.assign({}, param, {doPreEmit: true}) ;
+               },
+             shouldEmit: function(param){
+               console.log('preEmit',param);
+               return true;
+               },  
+             }});
+             
+
+TodoActions.getAll.globalMethod('call TodoActionsChild addItem globalMethod');
+TodoActionsChild.addItem.globalMethod('call TodoActionsChild addItem globalMethod');
+
+var TodoStore =  Reflux.createStore({
+  listData: [1, 2, 3],
+  //listenables: [TodoActions, TodoActionsChild],
+  listenables: [TodoActions],
+  init: function(){
+    this.listenTo(TodoAction, 'TodoAction');
+    this.listenToMany(TodoActionsChild);
+  },
+  
+  TodoAction: function(event, data){
+    console.log('TodoAction:', data);
+    if(data){
+      TodoAction.completed();
+    }else{
+      TodoAction.failed();
+    }
+  },
+  
+  onGetAll: function(){
+    var data = this.listData;
+    console.log("onGetAll", data);
+    this.trigger(data);
+  },
+  
+  onRemoveAll: function(){
+    console.log("onRemoveAll");
+    if(true){
+      TodoAction.completed();
+    }else{
+      TodoAction.failed();
+    }
+    this.trigger([]);
+  },
+  
+  onAddItem: function(param){
+    console.log("onAddItem", param);
+    var data = this.listData;
+    data.push(data[data.length-1] + 1);
+    if(param.actionName == "addItem1"){
+      TodoActionsChild.addItem.completed("add item success!");
+    }else{
+      TodoActionsChild.addItem.failed("add item fail!");
+    }
+    this.trigger(data);
+    TodoActionsChild.addItem.childrenTest("childrenTest");
+  },
+  
+  onAddItemCompleted: function(data){
+    console.log("onAddItemSuccess:" + data);
+  },
+  
+  onAddItemFailed: function(data){
+    console.log("onAddItemFailed:" + data);
+  },
+  
+  onAddItemChildrenTest: function(data){
+    console.log("onAddItemChildrenTest:" + data);
+  }
+});
+
+TodoStore.globalMethod('TodoStore globalMethod');
+
+var TodoComponent = React.createClass({
+  //mixins: [Reflux.ListenerMixin],
+  //mixins: [Reflux.listenTo(TodoStore, "onStatusChange")],
+  //mixins: [Reflux.connect(TodoStore, "listData")],
+  mixins: [Reflux.connectFilter(TodoStore, "listData", function(list){
+    return list.filter(function(item){return item%2})
+  })],
+  getInitialState: function(){
+    return {listData: []};
+  },
+  
+  onStatusChange: function(listData){
+    this.setState({listData: listData});
+  },
+  
+  componentDidMount: function(){
+    //与componentWillUnmount 里的 unsubscribe 一起使用
+    //this.unsubscribe = TodoStore.listen(this.onStatusChange);
+    //与 mixins: [Reflux.ListenerMixin], 一起使用
+    //this.listenTo(TodoStore, this.onStatusChange)
+    //this.listenToMany({"statusChange": TodoStore})
+  },
+  
+  componentWillUnmount: function(){
+    //this.unsubscribe();
+  },
+  
+  doSingleTodoAction: function(e){
+    TodoAction(e,'doSingleTodoAction').then(function(){
+      console.log('TodoAction success!');
+    }).catch(function(){
+      console.log('TodoAction fail!');
+    });
+  },
+  
+  doAddItem: function(e){
+    TodoActionsChild.addItem({actionName: "addItem"}).then(function(){
+      console.log('doAddItem success!');
+    }).catch(function(){
+      console.log('doAddItem fail!');
+    });
+  },
+  
+  render: function(){
+    return (
+      <div>
+        <button onClick = {this.doSingleTodoAction} value="触发TodoAction"> 触发TodoAction</button><br/>
+        <button onClick = {this.doAddItem} value="触发TodoActionsChild"> 触发TodoActionsChild</button><br/>
+        <button onClick = {TodoActions.getAll}> 触发action</button><br/>
+        <button onClick = {TodoActions.removeAll}> 清空列表action</button><br/>
+        <div>
+        {
+           this.state.listData.map(function(item){
+             return <p>{item}</p>
+           })
+        }
+        </div>
+      </div>
+    )
+  }
+});
+
+React.render(<TodoComponent/>, document.body);
+
+</script>
+</body>
+</html>
