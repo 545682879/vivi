@@ -116,3 +116,13 @@ function fn() {
 }
 
 `foo ${fn()} bar`
+
+const tmpl = addrs => `
+  <table>
+  ${addrs.map(addr => `
+    <tr><td>${addr.first}</td></tr>
+    <tr><td>${addr.last}</td></tr>
+  `).join('')}
+  </table>
+`;
+

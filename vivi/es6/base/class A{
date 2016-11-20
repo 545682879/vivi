@@ -1,0 +1,99 @@
+class A{
+	constructor(name, age){
+		this.name = name;
+		this.age = age;
+	}
+
+	getName(){
+		console.log(this.name);
+	}
+
+	getAge(){
+		console.log(this.age);
+	}
+
+	setName(name){
+		this.name = name;
+	}
+
+	setAge(age){
+		this.age = age;
+	}
+
+    toString(){
+    	console.log(this.name, this.age)
+    }
+}
+
+class B extends A{
+	constructor(name, age, staff){
+		super(name, age);
+		this.staff = staff;
+	}
+
+	getStaff(){
+		console.log(this.staff);
+	}
+
+	setStaff(staff){
+		this.staff = staff;
+	}
+
+	toString(){
+		super.toString();
+		console.log(this.staff);
+	}
+}
+
+
+class AA {
+	constructor(msg){
+		this.msg = msg;
+	}
+	getMsg(){
+		console.log(this.msg);
+	}
+}
+
+class BB {
+}
+
+Object.setPrototypeOf(BB.prototype, AA.prototype);
+Object.setPrototypeOf(BB, AA);
+
+Object.setPrototypeOf = function (obj, proto) {
+  obj.__proto__ = proto;
+  return obj;
+}
+
+Object.setPrototypeOf(B.prototype, A.prototype);
+// 等同于
+B.prototype.__proto__ = A.prototype;
+
+Object.setPrototypeOf(B, A);
+// 等同于
+B.__proto__ = A;
+
+
+
+class AAA extends Object {
+}
+
+
+class AAAA extends null {
+}
+
+
+AAA.prototype //Object {}
+AAA.prototype.__proto__ === Object.prototype // true
+AAA.__proto__ //functon Object() { [native code] }
+
+AAAA.prototype //Object {}
+AAAA.__proto__  //functon() {}
+AAAA.prototype.__proto__ === undefined
+
+class AAAAA {
+}
+
+AAAAA.__proto__ === Function.prototype // true
+AAAAA.prototype.__proto__ === Object.prototype // true

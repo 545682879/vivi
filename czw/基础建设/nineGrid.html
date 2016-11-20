@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>标签</title>
+	<style>
+		* {
+		    box-sizing: border-box;
+		}
+		.float {
+		    overflow: hidden;
+		    width: 500px;
+		}
+		.item {
+		    float: left;
+		    padding-top: 33.3%;
+		    width: 33.3%;
+		    border-right: 1px solid #fff;
+		    border-top: 1px solid #fff;
+		    background-color: red;
+		    font-size:0;
+		}
+		.item:nth-child(1) {
+		    padding-top: 66.6%;
+		    width: 66.6%;
+		}
+		.item:nth-child(2), .item:nth-child(3), .item:nth-child(6) {
+		    border-right: 0 none;
+		}
+		.item:nth-child(1), .item:nth-child(2) {
+		    border-top: 0 none;
+		}
+	</style>
+	<!-- <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> -->
+	<script   src="https://code.jquery.com/jquery-1.4.4.min.js"   integrity="sha256-UXNk8tRRYvtQN0N7W2y5U9ANmys7ebqH2f5X6m7mBww="   crossorigin="anonymous"></script>
+    <script type="text/javascript">
+	</script>
+  </head>
+  <body>
+	<div class="float">
+	    <div class="item">1</div>
+	    <div class="item">2</div>
+	    <div class="item">3</div>
+	    <div class="item">4</div>
+	    <div class="item">5</div>
+	    <div class="item">6</div>
+	</div>
+</html>

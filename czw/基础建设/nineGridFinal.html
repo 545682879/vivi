@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>标签</title>
+	<style>
+		.wrap-box {
+		  display: -webkit-box;
+		}
+		 
+		.flex-inner {
+		    -webkit-box-flex: 1;
+		    display: -webkit-box;
+		}
+		 
+		.flex-item {
+		    -webkit-box-flex: 1;
+		    position: relative;
+		}
+		.wrap-6 {
+		      -webkit-box-orient: horizontal;
+		}
+		.wrap-6 .flex-inner {
+		      -webkit-box-flex: 0;
+		      -webkit-box-orient: vertical;
+		}
+		.wrap-6 .flex-inner:first-child {
+		      width: 66.6%;
+		}
+		.wrap-6 .flex-inner:last-child {
+		      width: 33.3%;
+		}
+		.wrap-6 .flex-item {
+		      padding-top: 100%;
+		}
+		.wrap-6 .flex-box2 .flex-item {
+		      padding-top: 50%;
+		}
+		.wrap-6 .flex-box2 {
+		      display: -webkit-box;
+		      -webkit-box-orient: horizontal;
+		}
+		.wrap-6 .flex-inner:first-child,
+		.wrap-6 .flex-box2 .flex-item:first-child {
+		      margin-right: 1px;
+		}
+		.wrap-6 .flex-box1,
+		.wrap-6 .flex-inner:last-child .flex-item:first-child,
+		.wrap-6 .flex-inner:last-child .flex-item:nth-child(2) {
+		      margin-bottom: 1px;
+		}
+	</style>
+	<!-- <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> -->
+	<script   src="https://code.jquery.com/jquery-1.4.4.min.js"   integrity="sha256-UXNk8tRRYvtQN0N7W2y5U9ANmys7ebqH2f5X6m7mBww="   crossorigin="anonymous"></script>
+    <script type="text/javascript">
+	</script>
+  </head>
+  	<body>
+		<div class="wrap-box wrap-6">
+		    <div class="flex-inner">
+		      <div class="flex-box1 flex-item"></div>
+		      <div class="flex-box2">
+		        <div class="flex-item"></div>
+		        <div class="flex-item"></div>
+		      </div>
+		    </div>
+		    <div class="flex-inner">
+		      <div class="flex-item"></div>
+		      <div class="flex-item"></div>
+		      <div class="flex-item"></div>
+		    </div>
+		</div>
+	</body>
+</html>

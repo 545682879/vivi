@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>标签</title>
+	<style>
+    *{padding:0;margin:0;outline:none}
+		.header, .mainPage, .footer{
+			width: 984px;
+    		margin: 0 auto;
+		}
+
+		.menu{
+      position: relative;
+			width:100%;
+      height:40px;
+			background: #002163
+		}
+
+    .sqire{
+      position:relative;
+      width:100px;
+      height:100px;
+      background-color: red;
+      overflow: hidden;
+      /*
+      transition: background-color 6s ease-in-out;
+      -webkit-transition: background-color 6s ease-in-out;
+      */
+    }
+
+    .sqire::before{
+      content: "";
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background-color: #85a9e8;
+      -webkit-transition: -webkit-transform .3s;
+      transition: transform .3s;
+      -webkit-transition-timing-function: cubic-bezier(0.75,0,.125,1);
+      transition-timing-function: cubic-bezier(0.75,0,.125,1);
+
+    }
+
+    .sqire::after{
+      background-color: pink;
+      content: "";
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 0;
+      width:100px;
+      height: 100px;
+      -webkit-transition: -webkit-transform .3s;
+      transition: transform .3s;
+      -webkit-transition-timing-function: cubic-bezier(0.75,0,.125,1);
+      transition-timing-function: cubic-bezier(0.75,0,.125,1);
+
+    }
+    .sqire:hover::before, .sqire:hover::after{
+      -webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)
+    }
+    .sqire:hover::after{-webkit-transition-delay:.175s;transition-delay:.175s}
+    .sqire:hover{
+      background-color: pink !important;
+    }
+	</style>
+	<!-- <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> -->
+	<script   src="https://code.jquery.com/jquery-1.4.4.min.js"   integrity="sha256-UXNk8tRRYvtQN0N7W2y5U9ANmys7ebqH2f5X6m7mBww="   crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+  	<div class="header">
+
+  	</div>
+  	<div class="menu">
+
+  	</div>
+  	<div class="mainPage">
+      <div class="sqire">
+
+      </div>
+      <button type="button" id="changeColor">改变颜色</button>
+  	</div>
+  	<div class="footer">
+  	
+  	</div>
+        <script type="text/javascript">
+      $("#changeColor").click(function(){
+        $('.sqire').css({"background-color":"pink"})
+      })
+  </script>
+  </body>
+</html>
