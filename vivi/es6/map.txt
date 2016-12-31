@@ -1,0 +1,49 @@
+var map = new Map()
+
+map.set('abc', '1')
+Map {"abc" => "1"}
+
+map.set(['abc'], '2')
+Map {"abc" => "1", ["abc"] => "2"}
+
+map.set(['abc'], '3')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3"}
+
+var abc = ['abc']
+map.set(abc, '3')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "3"}
+
+map.set(abc, '4')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "4"}
+
+var abc1 = abc
+map.set(abc1, '5')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "5"}
+
+map.set(null, '6')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "5", null => "6"}
+
+map.set(undefined, '6')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "5", null => "6"…}size: (...)__proto__: Map<entries>[6]0: {"abc" => "1"}1: {Array[1] => "2"}2: {Array[1] => "3"}3: {Array[1] => "5"}4: {null => "6"}5: {undefined => "6"}
+
+map.set(undefined, '7')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "5", null => "6"…}size: (...)__proto__: Map<entries>[6]0: {"abc" => "1"}1: {Array[1] => "2"}2: {Array[1] => "3"}3: {Array[1] => "5"}4: {null => "6"}5: {undefined => "7"}
+
+map.set(NaN, '8')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "5", null => "6"…}size: (...)__proto__: Map<entries>[7]0: {"abc" => "1"}1: {Array[1] => "2"}2: {Array[1] => "3"}3: {Array[1] => "5"}4: {null => "6"}5: {undefined => "7"}6: {NaN => "8"}
+
+map.set(NaN, '9')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "5", null => "6"…}size: (...)__proto__: Map<entries>[7]0: {"abc" => "1"}1: {Array[1] => "2"}2: {Array[1] => "3"}3: {Array[1] => "5"}4: {null => "6"}5: {undefined => "7"}6: {NaN => "9"}
+
+map.set('123', '0')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "5", null => "6"…}size: (...)__proto__: Map<entries>[8]0: {"abc" => "1"}1: {Array[1] => "2"}2: {Array[1] => "3"}3: {Array[1] => "5"}4: {null => "6"}5: {undefined => "7"}6: {NaN => "9"}7: {"123" => "0"}
+
+map.set('123', '10')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "5", null => "6"…}size: (...)__proto__: Map<entries>[8]0: {"abc" => "1"}1: {Array[1] => "2"}2: {Array[1] => "3"}3: {Array[1] => "5"}4: {null => "6"}5: {undefined => "7"}6: {NaN => "9"}7: {"123" => "10"}key: "123"value: "10"
+
+map.set(123, '11')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "5", null => "6"…}size: (...)__proto__: Map<entries>[9]0: {"abc" => "1"}1: {Array[1] => "2"}2: {Array[1] => "3"}3: {Array[1] => "5"}4: {null => "6"}5: {undefined => "7"}6: {NaN => "9"}7: {"123" => "10"}8: {123 => "11"}
+
+var n123 = 123;
+map.set(n123, '12')
+Map {"abc" => "1", ["abc"] => "2", ["abc"] => "3", ["abc"] => "5", null => "6"…}size: (...)__proto__: Map<entries>[9]0: {"abc" => "1"}1: {Array[1] => "2"}2: {Array[1] => "3"}3: {Array[1] => "5"}key: Array[1]value: "5"4: {null => "6"}5: {undefined => "7"}6: {NaN => "9"}7: {"123" => "10"}8: {123 => "12"}
