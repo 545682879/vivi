@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Js Test</title>
+	<style>
+     *{
+       padding:0;
+       margin:0;
+     }
+    div{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    table
+    {
+      border-collapse:collapse;
+      width: 500px
+    }
+    table,th, td
+    {
+      border: 1px solid black;
+    }
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    var beginMoving=false;
+    function MouseDownToMove(obj){
+      obj.style.zIndex=1;
+      obj.mouseDownY=event.clientY;
+      obj.mouseDownX=event.clientX;
+      beginMoving=true;
+      //obj.setCapture();
+      if(obj.setCapture){
+          obj.setCapture();
+      }else if(window.captureEvents){
+          window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
+      }
+    }
+
+    function MouseMoveToMove(obj){
+      if(!beginMoving) return false;
+      obj.style.top = (event.clientY-obj.mouseDownY);
+      obj.style.left = (event.clientX-obj.mouseDownX);
+    }
+
+    function MouseUpToMove(obj){
+      if(!beginMoving) return false;
+      //obj.releaseCapture();
+      if(obj.releaseCapture){
+          obj.releaseCapture();
+        }else if(window.captureEvents){
+          window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);
+       }
+      obj.style.top=0;
+      obj.style.left=0;
+      obj.style.zIndex=0;
+      beginMoving=false;
+      var tempTop=event.clientY-obj.mouseDownY;
+      var tempRowIndex=(tempTop-tempTop%25)/25;
+      if(tempRowIndex+obj.rowIndex <0 )tempRowIndex=-1;
+      else tempRowIndex=tempRowIndex+obj.rowIndex;
+      if(tempRowIndex >= obj.parentElement.rows.length-1) tempRowIndex = obj.parentElement.rows.length-1;
+      console.log(obj.parentElement)
+      //obj.parentElement.moveRow(obj.rowIndex,tempRowIndex);
+      var copy = obj.cloneNode(true),
+          parent = obj.parentElement;
+      parent.deleteRow(obj.rowIndex,tempRowIndex);
+      parent.insertBefore(copy, parent.rows[tempRowIndex]);
+    }
+  </script>
+  </head>
+
+    <table cellpadding="0" cellspacing="0">
+      <tr style="cursor:move ;position:relative;" onmousedown='MouseDownToMove(this)' onmousemove='MouseMoveToMove(this)' onmouseup='MouseUpToMove(this);'>
+        <td>a</td>
+        <td>b</td> 
+        <td>c</td> 
+      </tr>
+      <tr style="cursor:move ;position:relative;" onmousedown='MouseDownToMove(this)' onmousemove='MouseMoveToMove(this)' onmouseup='MouseUpToMove(this);'>
+        <td>a1</td>
+        <td>b1</td> 
+        <td>c1</td> 
+      </tr>
+      <tr style="cursor:move ;position:relative;" onmousedown='MouseDownToMove(this)' onmousemove='MouseMoveToMove(this)' onmouseup='MouseUpToMove(this);'>
+        <td>a2</td>
+        <td>b2</td> 
+        <td>c2</td> 
+      </tr>
+    </table>
+
+  </body>
+</html>
