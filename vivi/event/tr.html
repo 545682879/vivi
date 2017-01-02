@@ -5,70 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Js Test</title>
 	<style>
-     *{
+
+    *{
        padding:0;
        margin:0;
-     }
+    }
+
     div{
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     table
     {
       border-collapse:collapse;
-      width: 500px
+      width: 500px;
     }
+
     table,th, td
     {
       border: 1px solid black;
+
     }
+
+    td{
+      height: 25px;
+    }
+
 	</style>
 	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
   <script type="text/javascript">
-    var beginMoving=false;
+    var beginMoving=false,
+        currentTr = null;
     function MouseDownToMove(obj){
-      obj.style.zIndex=1;
-      obj.mouseDownY=event.clientY;
-      obj.mouseDownX=event.clientX;
+      currentTr = obj;
+      console.log('rowIndex' + currentTr.rowIndex);
+      currentTr.style.zIndex=1;
+      currentTr.mouseDownY=event.clientY;
+      currentTr.mouseDownX=event.clientX;
+      //console.log("MouseDownToMove", event.clientY, event.clientX, currentTr.mouseDownY, currentTr.mouseDownX);
       beginMoving=true;
-      //obj.setCapture();
-      if(obj.setCapture){
-          obj.setCapture();
+      if(currentTr.setCapture){
+        currentTr.setCapture();
       }else if(window.captureEvents){
-          window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
+        window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
       }
     }
 
     function MouseMoveToMove(obj){
       if(!beginMoving) return false;
-      obj.style.top = (event.clientY-obj.mouseDownY);
-      obj.style.left = (event.clientX-obj.mouseDownX);
+      currentTr.style.top = (event.clientY - currentTr.mouseDownY) + 'px';
+      currentTr.style.left = (event.clientX - currentTr.mouseDownX) + 'px';
+     // console.log("MouseMoveToMove", event.clientY, event.clientX, currentTr.mouseDownY, currentTr.mouseDownX, currentTr.style.top, currentTr.style.left);
     }
 
     function MouseUpToMove(obj){
       if(!beginMoving) return false;
-      //obj.releaseCapture();
-      if(obj.releaseCapture){
-          obj.releaseCapture();
-        }else if(window.captureEvents){
+      if(currentTr.releaseCapture){
+          currentTr.releaseCapture();
+      }else if(window.captureEvents){
           window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);
-       }
-      obj.style.top=0;
-      obj.style.left=0;
-      obj.style.zIndex=0;
+      }
+      currentTr.style.top=0;
+      currentTr.style.left=0;
+      currentTr.style.zIndex=0;
       beginMoving=false;
-      var tempTop=event.clientY-obj.mouseDownY;
+      var tempTop=event.clientY-currentTr.mouseDownY;
       var tempRowIndex=(tempTop-tempTop%25)/25;
-      if(tempRowIndex+obj.rowIndex <0 )tempRowIndex=-1;
-      else tempRowIndex=tempRowIndex+obj.rowIndex;
-      if(tempRowIndex >= obj.parentElement.rows.length-1) tempRowIndex = obj.parentElement.rows.length-1;
-      console.log(obj.parentElement)
-      //obj.parentElement.moveRow(obj.rowIndex,tempRowIndex);
-      var copy = obj.cloneNode(true),
-          parent = obj.parentElement;
-      parent.deleteRow(obj.rowIndex,tempRowIndex);
+      //console.log("MouseUpToMove", event.clientY, currentTr.mouseDownY, tempRowIndex);
+      if(tempRowIndex + currentTr.rowIndex < 0){
+        tempRowIndex = -1;
+      }else{
+        tempRowIndex = tempRowIndex+currentTr.rowIndex;
+      }
+      if(tempRowIndex >= currentTr.parentElement.rows.length-1) 
+        tempRowIndex = currentTr.parentElement.rows.length-1;
+      //console.log("tempRowIndex" + tempRowIndex);
+      var copy = currentTr.cloneNode(true),
+          parent = currentTr.parentElement;
+      parent.deleteRow(currentTr.rowIndex);
       parent.insertBefore(copy, parent.rows[tempRowIndex]);
+      currentTr = null;
     }
   </script>
   </head>
