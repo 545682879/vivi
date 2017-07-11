@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>jQuery UI Sortable - Default functionality</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+  <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+  </style>
+  <script>
+  $(function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+    $( ".tr" ).sortable();
+    $( ".tr" ).disableSelection();
+  });
+  </script>
+</head>
+<body>
+ 
+<ul id="sortable">
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+</ul>
+ 
+ <table id="tb_1" cellspacing="0" cellpadding="2" width="100%" border="1">   
+<tbody>   
+<tr align="center" bgcolor="#dcdcdc" class="tr">   
+<td style="width:100px;" class="td">用户编号</td>   
+<td class="td">试用时间</td>
+<td>转正时间</td>
+<td>性别</td>
+<td>姓名拼音</td>   
+<td class="td">生日时间</td>
+<td>民族</td>
+<td>身高</td>   
+</tr>   
+<tr  class="tr">   
+<td>2000001</td>   
+<td>1997-3-13</td><td>1997-3-13</td><td>1</td><td>WZJ</td>   
+<td>1965-3-13</td><td>汉</td><td>171</td>   
+</tr>   
+<tr  class="tr">   
+<td>2000045</td>   
+<td>2001-2-15</td><td>2001-3-15</td><td>0</td><td>WY</td>   
+<td>1978-8-5</td><td>汉</td><td>162</td>   
+</tr>   
+<tr  class="tr">   
+<td>2000046</td>   
+<td>2001-2-23</td><td>2001-3-23</td><td>0</td><td>LQ</td>   
+<td>2001-2-23</td><td>汉</td><td>171</td>   
+</tr>   
+</tbody>   
+</table>   
+ 
+</body>
+</html>
