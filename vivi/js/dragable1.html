@@ -28,7 +28,7 @@
     </style>  
 
   </head>  
-  <body onmouseup="onmouseup();">  
+  <body >  
 <table id="tbl" cellspacing="1" cellpadding="5" bgcolor=#660000>
     <tr><td nowrap bgcolor=#bbbbbb style="white-space:nowrap;width:100px">标题一</td><td nowrap bgcolor=#bbbbbb style="white-space:nowrap;;width:100px">标题二</td><td  nowrap bgcolor=#bbbbbb style="width:100px" >标题三</td><td nowrap bgcolor=#bbbbbb style="width:100px" >标题四</td></tr>
     <tr><td bgcolor=#ffffff>内容A</td><td bgcolor=#ffffff>内容B</td><td bgcolor=#ffffff>内容C</td><td bgcolor=#ffffff>内容D</td></tr>
@@ -87,6 +87,7 @@ function onmousemove(event){
     }
 }
 document.onmouseup = function(event){
+    console.log(1);
     tartgetTd = null;
     resizeable = false;
     mousedown = false;

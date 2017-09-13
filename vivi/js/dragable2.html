@@ -1,0 +1,49 @@
+<!DOCTYPE html>  
+<html>  
+  <head>  
+    <style type="text/css">  
+        table{  
+            border-top:solid 1px black;   
+            border-left:solid 1px black;  
+            font-size:12px;  
+            width: 100%;  
+        }  
+        th{  
+            white-space: nowrap;  
+        }  
+        th,td{  
+            border-right-style: solid;  
+            border-right-width: 1px;  
+            border-bottom-style: solid;  
+            border-bottom-width: 1px;  
+            height:30px;  
+        }  
+        .dragable{  
+            width: 3px;  
+            height:100%;   
+            background-color: white;  
+            float: right;  /*这个样式与效果有一定关系,其他无所谓*/  
+            cursor: col-resize;  
+        }  
+    </style>  
+
+  </head>  
+  <body >  abc
+<table id="tbl" cellspacing="1" cellpadding="5" bgcolor=#660000 style="width:400px;">
+    <tr><td nowrap bgcolor=#bbbbbb style="white-space:nowrap;width:100px">标题一</td><td nowrap bgcolor=#bbbbbb style="white-space:nowrap;;width:100px">标题二</td><td  nowrap bgcolor=#bbbbbb style="width:100px" >标题三</td><td nowrap bgcolor=#bbbbbb style="width:100px" >标题四</td></tr>
+    <tr><td bgcolor=#ffffff>内容A</td><td bgcolor=#ffffff>内容B</td><td bgcolor=#ffffff>内容C</td><td bgcolor=#ffffff>内容D</td></tr>
+    <tr><td bgcolor=#ffffff>内容A</td><td bgcolor=#ffffff>内容B</td><td bgcolor=#ffffff>内容C</td><td bgcolor=#ffffff>内容D</td></tr>
+    <tr><td bgcolor=#ffffff>内容A</td><td bgcolor=#ffffff>内容B</td><td bgcolor=#ffffff>内容C</td><td bgcolor=#ffffff>内容D</td></tr>
+    <tr><td bgcolor=#ffffff>内容A</td><td bgcolor=#ffffff>内容B</td><td bgcolor=#ffffff>内容C</td><td bgcolor=#ffffff>内容D</td></tr>
+    <tr><td bgcolor=#ffffff>内容A</td><td bgcolor=#ffffff>内容B</td><td bgcolor=#ffffff>内容C</td><td bgcolor=#ffffff>内容D</td></tr>
+    <tr><td bgcolor=#ffffff>内容A</td><td bgcolor=#ffffff>内容B</td><td bgcolor=#ffffff>内容C</td><td bgcolor=#ffffff>内容D</td></tr>
+    <tr><td bgcolor=#ffffff>内容A</td><td bgcolor=#ffffff>内容B</td><td bgcolor=#ffffff>内容C</td><td bgcolor=#ffffff>内容D</td></tr>
+</table>
+  </body>  
+    <script language="javascript" src="./jquery.min.js" ></script>
+  <script language="javascript" src="./adjust.js" ></script>
+  <script language="javascript">
+    var table = document.getElementById("tbl");
+    $.ui.Adjust(table);
+  </script>
+</html>  

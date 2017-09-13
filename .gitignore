@@ -1,2 +1,5 @@
 /vivi/react/react/node_modules
 /vivi/react/webpack_server/node_modules
+/git/react-router-redux/node_modules
+/git/react-router-redux/examples/basic/node_modules
+/git/react-router-redux/examples/server/node_modules
