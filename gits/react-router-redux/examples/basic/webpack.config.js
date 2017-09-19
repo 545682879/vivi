@@ -1,5 +1,6 @@
 /* eslint-disable */
 const path = require('path');
+const babelpolyfill = require("babel-polyfill");
 
 module.exports = {
   entry: './app.js',
@@ -10,7 +11,8 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loader: 'babel',
+      //loader: 'babel',
+      loader: 'babel?presets[]=react,presets[]=es2015,presets[]=stage-1',
       exclude: /node_modules/,
       include: __dirname
     }]

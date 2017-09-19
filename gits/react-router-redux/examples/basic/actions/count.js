@@ -1,4 +1,5 @@
-import { INCREASE, DECREASE, NEW, PLAINT } from '../constants'
+import { INCREASE, DECREASE, NEW, PLAINT, PROMISE } from '../constants'
+import {createAction} from 'redux-actions';
 
 export function increase(n) {
   return {
@@ -28,3 +29,15 @@ export function plaint(payload){
     payload: payload
   }
 }
+
+//async with promise
+export let addTodoWithPromise = createAction(PROMISE, (val) =>
+    (
+    async (dispatch, getState)=>{
+        let value = await Promise.resolve(val + ' promise');
+        return {
+            value
+        };
+    }
+    )()
+);
