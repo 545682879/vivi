@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Event</title>
+	<style>
+		
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script src="./handlebars-v4.0.10.js"></script>
+		<script id="entry-template" type="text/x-handlebars-template">
+		  <div class="entry">
+		    <h1>{{title}}</h1>
+		    <div class="body">
+		      {{body}}
+		    </div>
+		  </div>
+	</script>
+    <script type="text/javascript">
+	
+		(function(){
+			
+		})();
+		
+		$(function(){
+			var context = {title: "My New Post", body: "This is my first post!"};
+			var source   = $("#entry-template").html();
+			var template = Handlebars.compile(source);
+			var html    = template(context);
+			console.log(html);
+		});
+
+	</script>
+
+  </head>
+  <body>
+  </body>
+</html>

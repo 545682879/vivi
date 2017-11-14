@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Font Size</title>
+	<style>
+	</style>
+	<!-- <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> -->
+  <script type="text/javascript">
+    function setSelectionRange(input, selectionStart, selectionEnd) {
+      if (input.setSelectionRange) {
+        input.focus();
+        //input.selectionStart = input.value.length
+        input.setSelectionRange(selectionStart, selectionEnd);
+        //input.selectionStart = input.value.length;
+      }
+      else if (input.createTextRange) {
+        //input.focus();
+        var range = input.createTextRange();
+        range.collapse(true);
+        range.moveEnd('character', selectionEnd);
+        range.moveStart('character', selectionStart);
+        range.select();
+      }
+    }
+
+    function setCaretToPos (input, posStart, posEnd) {
+      setSelectionRange(input, posStart, posEnd);
+    }
+
+    function doClick(){
+      alert(1)
+      console.log(document.getElementById("input"));
+      setCaretToPos(document.getElementById("input"), 2, document.getElementById("input").value.length);
+    }
+	</script>
+  </head>
+  <body>
+  <input style="width:100px" value="1234567890" id="input"></input>
+  <button onclick="doClick()"></button>
+  </body>
+</html>
