@@ -1,6 +1,7 @@
 
 import React from 'react';
 import NormalForm from '../iloop-form/NormalForm';
+import TableForm from '../iloop-form/TableForm';
 import index from '../iloop-form/index';
 import ContractPayCycle from '../iloop-form/controls/ContractPayCycle';
 import { DependencesContext } from '../iloop-form/context';
@@ -114,7 +115,7 @@ export default class NormalFormExample extends React.Component {
              
               }}
             />
-             <NormalForm
+             <TableForm
               ref={this.normalFormRef}
               wrappedComponentRef={form => {
                 this.normalform = form;
@@ -123,10 +124,9 @@ export default class NormalFormExample extends React.Component {
               changeDependences={this.changeDependences}
               formItems={template2}
               dataSource={null}
-              formType="form"
-              title="基本信息"
+              title="其他信息"
             />
-            <Button onClick={this.clickButton.bind(this)}/>
+            <Button onClick={this.clickButton.bind(this)}>保存</Button>
         </div>
       </DependencesContext.Provider>
     );

@@ -37,60 +37,57 @@
     flex: 1;
 }
 
-.ant-form-item-control {
-    line-height: 39px;
-}
-
-.ant-input {
-    background: #fff;
-    border: 1px solid #e5e6e7;
-    border-radius: 4px;
-}
-
-.ant-input::placeholder {
-    font-family: PingFangSC-Regular, serif;
-    font-size: 14px;
-    color: #b4b9cb;
-    letter-spacing: 0;
-}
-
-.ant-form-item-label>label {
-    font-family: PingFangSC-Regular, serif;
-    font-size: 14px;
-    color: #222940;
-    letter-spacing: 0;
-    min-width: 80px;
-    display: inline-block;
-    text-align: left;
-}
-
-.ant-form-item-label>label::before {
-    display: inline-block;
-    margin-right: 4px;
-    font-size: 14px;
-    font-family: SimSun, sans-serif;
-    line-height: 1;
-    content: '*';
-    color: transparent;
-}
-
-label.ant-form-item-required::before {
-    display: inline-block;
-    margin-right: 4px;
-    color: #f5222d;
-    font-size: 14px;
-    font-family: SimSun, sans-serif;
-    line-height: 1;
-    content: '*';
-}
-
-.ant-calendar-picker {
-    width: 100%;
-}
-
-.ant-table-thead>tr>th,
-.ant-table-tbody>tr>td {
-    padding: 5px 5px;
+.iloopc-form {
+    .ant-form-item-control {
+        line-height: 39px;
+    }
+    .ant-input {
+        background: #fff;
+        border: 1px solid #e5e6e7;
+        border-radius: 4px;
+    }
+    .ant-input::placeholder {
+        font-family: PingFangSC-Regular, serif;
+        font-size: 14px;
+        color: #b4b9cb;
+        letter-spacing: 0;
+    }
+    .ant-form-item-label>label {
+        font-family: PingFangSC-Regular, serif;
+        font-size: 14px;
+        color: #222940;
+        letter-spacing: 0;
+        min-width: 80px;
+        display: inline-block;
+        text-align: left;
+    }
+    .ant-form-item-label>label::before {
+        display: inline-block;
+        margin-right: 4px;
+        font-size: 14px;
+        font-family: SimSun, sans-serif;
+        line-height: 1;
+        content: '*';
+        color: transparent;
+    }
+    label.ant-form-item-required::before {
+        display: inline-block;
+        margin-right: 4px;
+        color: #f5222d;
+        font-size: 14px;
+        font-family: SimSun, sans-serif;
+        line-height: 1;
+        content: '*';
+    }
+    .ant-calendar-picker {
+        width: 100%;
+    }
+    .ant-table-thead>tr>th {
+        padding: 5px 5px;
+    }
+    .ant-table-tbody>tr>td {
+        padding: 5px 5px;
+    }
 }
 
 .ant-upload-list-item {

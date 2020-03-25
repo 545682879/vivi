@@ -98,7 +98,7 @@ export default class FieldLinkKeys extends PureComponent {
                 style={{ color: '#d9d9d9' }}
                 icon="minus-square"
                 onClick={() => {
-                  const dataSource1 = [...dataSource];
+                  const dataSource1 = cloneDeep(dataSource);
                   dataSource1.params.splice(index, 1);
                   if (dataSource1.params.length === 0) {
                     dataSource1.params = [{}];

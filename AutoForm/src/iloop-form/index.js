@@ -13,10 +13,9 @@ import common from './utils/common';
 import districtData from './utils/districtData';
 import responsive from './utils/responsive';
 import validator from './utils/validator';
-import { Calculate, Statistic } from 'iloop-fe-utils/lib/calculate';
+import { Calculate, Statistic } from './utils/calculate';
 import { dependences, DependencesContext } from './context';
 import constant from './utils/constant';
-
 
 /**
  * 表单校验

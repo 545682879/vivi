@@ -6,10 +6,10 @@ import { cloneDeep, debounce, isEmpty } from 'lodash';
 import Control from './Control';
 import common from './utils/common';
 // @ts-ignore
-import { Statistic } from 'iloop-fe-utils/lib/calculate';
+import { Statistic } from './utils/calculate';
 import md5 from 'md5';
 import BaseForm from './BaseForm';
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+//import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import './index.scss';
 const { guid, generateFieldName } = common;
 
