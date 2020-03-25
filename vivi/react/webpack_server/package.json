@@ -47,7 +47,7 @@
     "babel-preset-react": "^6.5.0",
     "graceful": "~1.0.0",
     "html-webpack-plugin": "^2.8.2",
-    "lodash": "~3.10.1",
+    "lodash": "~4.17.15",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-kendo": "~0.13.11",
