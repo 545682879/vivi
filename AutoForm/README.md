@@ -114,6 +114,7 @@ cols: 1
       title="发货信息"
     />
 ```
+![表单](https://github.com/545682879/vivi/blob/master/AutoForm/src/iloop-form/controls/FlowImg/form.png)
 
 ## TableForm
 
@@ -151,6 +152,9 @@ cols: 1
       formType={query.type === 'detail' ? 'detail' : 'table'}
     />
 ```
+
+![表格](https://github.com/545682879/vivi/blob/master/AutoForm/src/iloop-form/controls/FlowImg/form.png)
+
 
 #### 接口API
 | API | 说明 | 参数 | 返回值 |
