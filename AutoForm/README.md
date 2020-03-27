@@ -3,13 +3,7 @@
 npm install
 npm start
 
----
-category: Components
-type: General
-title: CreateForm
-subtitle: 创建表单
-cols: 1
----
+![流程图](https://github.com/545682879/vivi/blob/master/AutoForm/src/iloop-form/controls/FlowImg/flow.png)
 
 
 ## 表单控件类型及属性
@@ -77,6 +71,10 @@ cols: 1
    非配置，前端自定义扩展组件
    自定义组件的初始值应该在模版里用initialValue指定，不会像其他固定固定组件一样自动处理
 
+
+![表格](https://github.com/545682879/vivi/blob/master/AutoForm/src/iloop-form/controls/FlowImg/form.png)
+
+
 ## NormalForm
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -114,6 +112,7 @@ cols: 1
       title="发货信息"
     />
 ```
+![表单](https://github.com/545682879/vivi/blob/master/AutoForm/src/iloop-form/controls/FlowImg/form.png)
 
 ## TableForm
 
@@ -151,6 +150,8 @@ cols: 1
       formType={query.type === 'detail' ? 'detail' : 'table'}
     />
 ```
+
+
 
 #### 接口API
 | API | 说明 | 参数 | 返回值 |
