@@ -26,14 +26,18 @@ const formItemLayout = {
 };
 
 class AddField extends Component {
-  state = {
-    k: Date.now(),
-    templates: [],
-    modalkey: Date.now(),
-    validatorOptions: Object.keys(validator).map(it => ({ label: validator[it].name, name: it })),
-    inputType: '',
-    initialDataSource: [],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      k: Date.now(),
+      templates: [],
+      modalkey: Date.now(),
+      validatorOptions: Object.keys(validator).map(it => ({ label: validator[it].name, name: it })),
+      inputType: '',
+      initialDataSource: [],
+    };
+  }
+
 
   componentWillReceiveProps(nextProps) {
     const { isModelShow } = this.props;

@@ -6,8 +6,7 @@ import { HashRouter as Router, Link, Route } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
 
 function App() {
-  return (
-    <div className="App">
+  return <div className="App">
            <Router>
         <div className="App">
           {/* <Link to="/">Home</Link> */}
@@ -21,7 +20,6 @@ function App() {
         </div>
       </Router>
     </div>
-  );
 }
 
 export default App;
