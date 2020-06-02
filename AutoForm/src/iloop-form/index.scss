@@ -1,0 +1,190 @@
+.iloopc-container {
+    position: relative;
+}
+
+.inline {
+    padding: 0;
+}
+
+.block {
+    padding: 20px 24px 24px 24px;
+}
+
+.iloopc-form {
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.iloopc-form .ant-row {
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.iloopc-form .ant-form-item {
+    margin-bottom: 0;
+    display: flex;
+}
+
+.iloopc-form {
+    .ant-form-item-label {
+        width: auto;
+        line-height: 39px;
+    }
+}
+
+.iloopc-form .ant-form-item-control-wrapper {
+    flex: 1;
+}
+
+.iloopc-form .ant-table-measure-row {
+    td {
+        height: 0;
+    }
+}
+
+.iloopc-form .ant-form-item-control {
+    line-height: 39px;
+    text-align: left;
+}
+
+.iloopc-form .ant-select-selection-item {
+    flex: none;
+}
+
+.iloopc-form .ant-input {
+    background: #fff;
+    border: 1px solid #e5e6e7;
+    border-radius: 4px;
+}
+
+.iloopc-form .ant-input::placeholder {
+    font-family: PingFangSC-Regular, serif;
+    font-size: 14px;
+    color: #b4b9cb;
+    letter-spacing: 0;
+}
+
+.iloopc-form .ant-form-item-label>label {
+    font-family: PingFangSC-Regular, serif;
+    font-size: 14px;
+    color: #222940;
+    letter-spacing: 0;
+    min-width: 80px;
+    display: inline-block;
+    text-align: left;
+}
+
+.iloopc-form .ant-form-item-label>label::before {
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 14px;
+    font-family: SimSun, sans-serif;
+    line-height: 1;
+    content: '*';
+    color: transparent;
+}
+
+.iloopc-form label.ant-form-item-required::before {
+    display: inline-block;
+    margin-right: 4px;
+    color: #f5222d;
+    font-size: 14px;
+    font-family: SimSun, sans-serif;
+    line-height: 1;
+    content: '*';
+}
+
+.iloopc-form .ant-calendar-picker {
+    width: 100%;
+}
+
+.iloopc-form .ant-table-thead>tr>th,
+.iloopc-form .ant-table-tbody>tr>td {
+    padding: 5px 5px;
+}
+
+.iloopc-form .ant-upload-list-item {
+    position: absolute;
+}
+
+.iloopc-form .ant-picker {
+    width: 100%;
+}
+
+.iloopc-form .ant-upload-list-item-name {
+    width: inherit;
+}
+
+.iloopc-form .ant-upload-list-item .anticon-close {
+    padding-left: 20px;
+    width: 20px;
+}
+
+.iloopc-form .ant-time-picker-clear {
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    margin-top: -7px;
+}
+
+.iloopc-form .ant-time-picker,
+.iloopc-form .ant-time-picker-input {
+    display: inline;
+}
+
+.iloopc-form .hr {
+    border: 1px solid #e8e8e8;
+    margin-top: 5px;
+}
+
+.iloopc-form .wrapRow {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.iloopc-form .buttonRow {
+    display: flex;
+    justify-content: center;
+}
+
+.iloopc-form .buttonRow button {
+    margin-right: 0;
+    border: 1px dashed #e9e9e9;
+    background: #fff;
+    width: 100%;
+    margin-top: 5px;
+    font-family: PingFangSC-Regular, serif;
+    font-size: 14px;
+    color: #222940;
+    letter-spacing: 0;
+    margin-bottom: 10px;
+}
+
+.iloopc-form .description {
+    min-height: 39px;
+}
+
+.iloopc-form .title {
+    font-family: PingFangSC-Medium, serif;
+    font-size: 16px;
+    color: #222940;
+    letter-spacing: 0;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    font-weight: 700;
+}
+
+.iloopc-detail .ant-form-item-label {
+    line-height: 20px;
+}
+
+.iloopc-detail .ant-form-item-control {
+    line-height: 20px;
+    text-align: left;
+}
+
+.iloopc-detail .detailSpan {
+    word-break: break-word;
+}

@@ -1,0 +1,54 @@
+.wrapper {
+  .box {
+    .label {
+      text-align: right;
+      line-height: 32px;
+      font-size: 14px;
+    }
+    margin-top: 10px;
+    &:first-child {
+      margin-bottom: 20px;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: 500;
+      color: black;
+    }
+
+    .selectOpts {
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      margin: 10px;
+      padding: 10px 0;
+      max-height: 200px;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      :global {
+        .ant-btn {
+          margin-top: 9px;
+        }
+      }
+    }
+  }
+
+  :global {
+    .ant-modal-footer {
+      text-align: center;
+
+      div {
+        button:first-child {
+          display: none;
+        }
+      }
+    }
+    .ant-form-inline .ant-form-item-with-help {
+      margin-bottom: 0;
+
+      .ant-form-explain,
+      .ant-form-extra {
+        font-size: 12px;
+      }
+    }
+  }
+}
